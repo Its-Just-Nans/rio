@@ -1,0 +1,110 @@
+---
+title: TD Mobilité - Exercice 1
+---
+
+# Sélection et resélection 2G
+
+## Question 1
+
+1. Le MS déocde les voies valise des 3 cellules
+
+## Question 2
+
+Marge en réception (downlink)
+
+$$
+A_{[dB]} = PuissanceRecue_{[dBm]} - puissance requise_{[dBm]}
+$$
+
+$$
+A = RXLEV - RXLEV_ACCESS_MIN
+$$
+
+Déficit en puissance (uplink)
+
+$$
+B_{[dB]} = PuissanceMaxAutorisee_{[dBm]} - Puissance du mobile_{[dBm]}
+$$
+
+$$
+B = MS - TxPur_Max_CCH - P
+$$
+
+CCh = commom channel
+
+Critère de sélection (puissance)
+
+$$
+{C_{1}}_{[dB]} = A_{[dB]} - \max(0,B)_{[dB]}
+$$
+
+|           | RXLEV  |        A         |      B      |     C1      | Remarques |
+| :-------: | :----: | :--------------: | :---------: | :---------: | --------- |
+| Cellule A | -95dBm | -95-(-100) = 5dB | $30-30=0dB$ | 5-0dB = 5dB |
+| Cellule B | -92dBm | -92-(-90) = -2dB |     ///     |     ///     | A < 0     |
+| Cellule C | -93dBm | -93-(-100) = 7dB | $33-30=3dB$ |   7-3=4dB   |
+
+> Calculs
+
+1w = 1000mW
+
+$10log10(1000) = 30dBm$
+$10*log10(2000) = 33dBm$
+
+## Question 3
+
+Les cellules convenables sont les cellules A et C (cellule avec C1 > 0dB)
+
+La cellule selectionné est celle avec le C1 le plus élevé, c'est donc la cellule A
+
+## Question 4
+
+Il effectue des messures en puissance sur sa cellule courante et sur ses cellules voisines qui sont déclarées dans la voie balise de la cellule courante.
+
+On calcule le critère de reselection sur les 6 meilleurs cellules voisines (d'après ces mesures sur toutes les cellules voisines) et sur sa cellule courante
+
+## Question 5
+
+CELL_RESELECT_HYSTERERIS
+
+L'écart nécessaire entre les critères de reselection de 2 cellules qui appartiennet à 2 zones de localisation différentes
+
+Si je chane de zone
+
+C2(nouvelleCelluleNouvelleZone) > C2(AncienneCelluleAncienneZone) + CELL_RESELECT_HYSTERERIS
+
+Si je chane PAS de zone
+
+C2(nouvelleCelluleNouvelleZone) > C2(AncienneCelluleAncienneZone)
+
+## Question 6
+
+|                     | RXLEV  |        A         |      B      |     C1      |     C2      |
+| :-----------------: | :----: | :--------------: | :---------: | :---------: | :---------: | --------- |
+| Cellule A (LAI = 1) | -95dBm | -95-(-100) = 5dB | $30-30=0dB$ | 5-0dB = 5dB |  5-3 = 2dB  |
+| Cellule B (LAI = 1) | -85dBm | -85-(-90) = 5dB  |     0dB     | 5-0dB = 5dB |  5-3 = 2dB  |
+| Cellule C (LAI = 2) | -80dBm | -80-(-100) = 7dB | $33-30=3dB$ |    17 dB    | 17-4 = 13dB | > (2 + 8) |
+
+$$
+{C_{2}}_{[dB]} = {C_{1}}_{[dB]} - CELL_RESELECT_OFFSET
+$$
+
+## Question 7
+
+Comparaison cell A - Cell C
+
+C2(CellA) + Cell Reselect Hystereris = 2 + 8 = 10 dB
+
+C2(Cell C) = 13 dB
+
+La cellule C est la cellule courante
+
+## Question 8
+
+Oui il y a eu une resélection de A à C
+
+Il y a eu un changement de zone de localisation donc il y a eu une procédure de mis a jour de zone de localisation (le mobile a dû se connecter au réseau pour mettre à jour la zone de locationsation auprès de son VLR).
+Cette procédure peut être :
+
+-   courte si même VLR
+-   longue si changement de VLR

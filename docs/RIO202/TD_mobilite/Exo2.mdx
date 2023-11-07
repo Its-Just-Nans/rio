@@ -1,0 +1,84 @@
+---
+title: TD Mobilité - Exercice 2
+---
+
+# Sélection et resélection 3G FDD
+
+P_MAX = 1W
+
+## Question 1
+
+Il y a deux critères de selection:
+
+-   1 critère de puissance (comme en 2G) - "signal assez fort"
+-   1 critère de qualité - "signal assez bon"
+
+Pour chaque cellules il faut calculer les 2 critères
+
+## Question 2
+
+PCompensation = max(UE_TXPwr_Max_RACH - Pmax, 0)
+SrXLevel = QRxLevMeas - QRxLevMin - PCompensation
+ça correspond un peu a la formule de A en 2G
+
+|           | QRXLEVMEAS | PCompensation |      SrXLevel       | Squal = QqualMeas - QqualMin |
+| :-------: | :--------: | :-----------: | :-----------------: | :--------------------------: |
+| Cellule A |   -90dBm   |      0dB      |  -90-(-90)-0 = 0dB  |       -13-(-10) = -3dB       |
+| Cellule B |   -85dBm   |  33-30 = 3dB  | -85-(-100)-3 = 12dB |        -7-(-12) = 5dB        |
+| Cellule C |   -80dBm   |      0dB      | -80-(-90)-0 = 10dB  |       -10-(-10) = 0dB        |
+
+Les cellules convenables sont SrxLvel > 0 et Squal > 0
+
+Il y a donc que la cellule B qui est convenable
+
+## Question 3
+
+1 seul critère de reslection par elle (ranking)
+
+-   1 Rs : cellule courante (serving cell)
+-   pluieurs Rn cellules voisines (neighor cells) pour chaque voisines
+
+## Question 4
+
+Qmeas = Qqualmeas on 3 GDFF
+
+$$
+CPICH E_c / N_0
+$$
+
+$N_0$ is Noise
+
+CPICH est le nom du canal pilot sur lequel la mesure est effectué
+
+## Question 5
+
+Squal < SintraSearch
+
+Squal = critère de sélection de lacellue courante
+
+SintraSearch Seuil de déclenchement des mesures
+
+Squal > Sintra search
+aucune mesure sur les cellues voisines
+
+Squal < SintraSearch
+
+=> mesure sur les cellues voisines meme bande de frequence
+
+## Question 6
+
+La cellule B est la cellule courante
+
+|           | QQaulMeas |      Rs      |     Rn      |
+| :-------: | :-------: | :----------: | :---------: |
+| Cellule A |   -9dBm   |     ////     | -9-2=-11dB  |
+| Cellule B |  -10dBm   | -10+2 = -8dB |     ///     |
+| Cellule C |   -5dBm   |     ////     | -5-2 = -7dB |
+
+On passe sur la cellule C car il y a un meilleur critere R
+
+## Question 7
+
+resélection de B à C
+
+On ne fait pas de procédure de signalisaion car on ne change pas de zone de localisation (LAI = 2)

@@ -1,0 +1,33 @@
+## TP1
+
+- Énoncé https://drive.google.com/file/d/1RIvD7GbAt3fG9m4nFPfkVqD8ct8jroZu/view
+
+### Setup of experiment
+
+```txt
+m3,31
+m3,33 -> router
+m3,35
+```
+
+### Compilation
+
+```bash
+iotlab-node --flash ./http-server.iotlab-m3 -l lille,m3,31
+```
+
+
+```bash
+# we contact the BR
+lynx -dump http://[2001:660:4403:4ab::3158]
+```
+
+```txt
+   Neighbors
+fe80::3355
+fe80::1954
+
+   Routes
+2001:660:4403:4ab::3355/128 (via fe80::3355) 1799s
+2001:660:4403:4ab::1954/128 (via fe80::1954) 1797s
+```
