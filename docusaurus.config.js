@@ -70,7 +70,7 @@ const config = {
                         label: "Pages",
                     },
                     {
-                        href: "https://github.com/facebook/docusaurus",
+                        href: "https://github.com/Its-Just-Nans/rio",
                         label: "GitHub",
                         position: "right",
                     },
