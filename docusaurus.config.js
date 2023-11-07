@@ -13,7 +13,9 @@ const config = {
     title: "RIO website",
     tagline: "Unofficial RIO website",
     favicon: "img/rio_rect.png",
-
+    markdown: {
+        mermaid: true,
+    },
     // Set the production url of your site here
     url: "https://its-just-nans.github.io/",
     // Set the /<baseUrl>/ pathname under which your site is served
@@ -29,7 +31,7 @@ const config = {
         defaultLocale: "en",
         locales: ["en"],
     },
-
+    themes: ["@docusaurus/theme-mermaid"],
     presets: [
         [
             "classic",
@@ -50,7 +52,14 @@ const config = {
             }),
         ],
     ],
-
+    stylesheets: [
+        {
+            href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",
+            type: "text/css",
+            integrity: "sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM",
+            crossorigin: "anonymous",
+        },
+    ],
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({

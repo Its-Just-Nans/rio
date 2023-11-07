@@ -1,1 +1,56 @@
 # Avance en temps en 4G
+
+-   Dans la norme LTE les les durées sont des multiples de période d'échantillonnage :
+
+$$
+T_s = \frac{1}{2048 * 15000} = \frac{1}{30\,720\,000}
+$$
+
+-   La commande d'avance en temps incluse dans la réponse à
+    l'accès aléatoire est codée sur 11 bits
+-   La valeur transmise correspond à un ajustement temporel
+    multiple de 16 $T_s$.
+
+## Nombre de valeur possible théorique pour l'avance en temps
+
+<details>
+
+<summary>Réponse</summary>
+
+$$
+2^{11} = 2048
+$$
+
+</details>
+
+## Avec les valeurs en réalité. Calculer le rayon maximal
+
+<details>
+
+<summary>Réponse</summary>
+
+$$
+T_A = 2t = 2\frac{d}{c} = 1282 * 16 T_s
+$$
+
+On ré arrange la formule
+
+$$
+T_A = 2\frac{d}{c}
+$$
+
+$$
+\frac{T_A}{2} = \frac{d}{c}
+$$
+
+$$
+d = \frac{T_A}{2}*c = \frac{(1282 * 16 T_s)}{2} * (3 * 10^8)
+$$
+
+$$
+d = \frac{(1282 * 16 * \frac{1}{30\,720\,000})}{2} * (3 * 10^8)_{[m/s]} = 100156.25_{[m]} = 100.15625_{[km]}
+$$
+
+Le rayon maximal est donc de 100.15625 km
+
+</details>
