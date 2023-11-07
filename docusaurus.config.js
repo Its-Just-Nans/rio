@@ -12,7 +12,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 const config = {
     title: "RIO website",
     tagline: "Unofficial RIO website",
-    favicon: "./img/favicon.ico",
+    favicon: "img/rio_rect.png",
 
     // Set the production url of your site here
     url: "https://its-just-nans.github.io/",
