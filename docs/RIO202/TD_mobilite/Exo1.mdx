@@ -17,7 +17,7 @@ A_{[dB]} = PuissanceRecue_{[dBm]} - puissance requise_{[dBm]}
 $$
 
 $$
-A = RXLEV - RXLEV_ACCESS_MIN
+A = RXLEV - RXLEV\_ACCESS\_MIN
 $$
 
 Déficit en puissance (uplink)
@@ -27,7 +27,7 @@ B_{[dB]} = PuissanceMaxAutorisee_{[dBm]} - Puissance du mobile_{[dBm]}
 $$
 
 $$
-B = MS - TxPur_Max_CCH - P
+B = MS - TxPur\_Max\_CCH - P
 $$
 
 CCh = commom channel
@@ -79,14 +79,14 @@ C2(nouvelleCelluleNouvelleZone) > C2(AncienneCelluleAncienneZone)
 
 ## Question 6
 
-|                     | RXLEV  |        A         |      B      |     C1      |     C2      |
-| :-----------------: | :----: | :--------------: | :---------: | :---------: | :---------: | --------- |
-| Cellule A (LAI = 1) | -95dBm | -95-(-100) = 5dB | $30-30=0dB$ | 5-0dB = 5dB |  5-3 = 2dB  |
-| Cellule B (LAI = 1) | -85dBm | -85-(-90) = 5dB  |     0dB     | 5-0dB = 5dB |  5-3 = 2dB  |
+|                     | RXLEV  |        A         |      B      |     C1      |     C2      |       | 
+| :-----------------: | :----: | :--------------: | :---------: | :---------: | :---------: | :---------: |
+| Cellule A (LAI = 1) | -95dBm | -95-(-100) = 5dB | $30-30=0dB$ | 5-0dB = 5dB |  5-3 = 2dB  |      |
+| Cellule B (LAI = 1) | -85dBm | -85-(-90) = 5dB  |     0dB     | 5-0dB = 5dB |  5-3 = 2dB  |        |
 | Cellule C (LAI = 2) | -80dBm | -80-(-100) = 7dB | $33-30=3dB$ |    17 dB    | 17-4 = 13dB | > (2 + 8) |
 
 $$
-{C_{2}}_{[dB]} = {C_{1}}_{[dB]} - CELL_RESELECT_OFFSET
+{C_{2}}_{[dB]} = {C_{1}}_{[dB]} - CELL\_RESELECT\_OFFSET
 $$
 
 ## Question 7

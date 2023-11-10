@@ -1,1 +1,28 @@
 # Ordonnancement
+
+## Ordonnancement Round Robin
+
+
+c1=10 Mbps, c2=1 Mbps
+p=0.8, q=0.2
+
+
+| Utilisateur | Débit moyen                             | Application numérique | Proportion des ressources |
+|-------------|----------------------------------------|-----------------------|----------------------------|
+| 1           |   $\frac{p * c1 + (1 - p) * c2}{2}$    | 4,1 Mbps              |         $\frac{1}{2}$ |
+| 2           |   $\frac{q * c1 + (1 - q) * c2}{2}$    | 1,4 Mbps              |  $\frac{1}{2}$ |
+
+
+Débit cellulaire = 5.5 Mbps
+
+
+## Ordonnancement Max C/I
+
+
+| Utilisateur | Débit moyen                             | Application numérique | Proportion des ressources |
+|-------------|----------------------------------------|-----------------------|----------------------------|
+| 1           |   $p*(1-q)*c1+\frac{1}{2}*p*q*c1+\frac{1}{2}*(1-p)*(1-q)*c2$    | 7,28 Mbps              |        $p*(1-q)+ \frac{1}{2}*p*q+ \frac{1}{2}*(1-p)*(1-q)=80%$ |
+| 2           |   $q*(1-p)*c1+\frac{1}{2}*p*q*c1+\frac{1}{2}*(1-p)*(1-q)*c2$    | 1,28 Mbps              |  $ q*(1-p)+1/2*p*q+\frac{1}{2}*(1-p)*(1-q)=20%$ |
+
+
+Débit cellulaire = 8,56 Mbps

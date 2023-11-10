@@ -1,0 +1,27 @@
+# Contrôle de Puissance
+
+
+- La BS annonce dans sa voie balise qu'elle désire recevoir le signal avec une puissance de -80dBm.
+- On sait qu'elle émet à une puissance de 40W.
+- Le mobile reçoit la voie balise avec une puissance de -57dBm
+
+
+## Puissance d'émission du mobile
+
+$P_{ra} = -80$ dBm
+
+$PtxBS = 10 * log_{10}(40000) = 46$ dBm
+
+$P_{rx} = -57$ dBm
+
+$$
+PtxUE = P_{ra} + PtxBs - P_{rx} = 23 dBm
+$$
+
+## Attenuation voie montante 2 dB supérieure que la voie descendante
+
+Le mobile effectue un power ramping.
+S'il est de 1dB il pourra émettre à la bonne puisance à la seconde retransmission.
+
+Si son amplificateur ne le permet pas, il ne pourra pas se
+connecter à cette cellule
