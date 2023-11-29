@@ -1,0 +1,57 @@
+
+## TP3
+
+- https://drive.google.com/file/d/1kNAwshSKKnzQ4Nd8a0rM7dyO9aFO56vB/view
+
+### Edit the code
+
+```shell
+code ~/iot-lab/parts/contiki/examples/iotlab/04-er-rest-example/er-example-client.c
+# edit the code
+```
+
+### Run commands
+
+```bash
+make TARGET=iotlab-m3
+iotlab-node --flash er-example-client.iotlab-m3 -l lille,m3,142
+# change ~/iot-lab/parts/contiki/apps/er-coap/er-coap-engine.c
+# to activate debug
+# re build server
+make TARGET=iotlab-m3
+iotlab-node --flash er-example-server.iotlab-m3 -l lille,m3,149
+nc m3-149 20000
+```
+
+```bash
+sudo tunslip6.py -v2 -L -a m3-30 -p 20000 2001:660:4403:0498::1/64
+
+
+cd /senslab/users/riotp12/iot-lab/parts/contiki/examples/ipv6/rpl-border-router
+make TARGET=iotlab-m3
+iotlab-node --flash border-router.iotlab-m3 -l lille,m3,30
+
+cd /senslab/users/riotp12/iot-lab/parts/contiki/examples/ipv6/http-server
+make TARGET=iotlab-m3
+#iotlab-node --flash http-server.iotlab-m3 -l lille,m3,31
+
+
+lynx -dump [2001:660:4403:498::a389]
+# we see the http server
+# we try to contact the http server
+lynx -dump [2001:660:4403:499::1656]
+
+cd /senslab/users/riotp12/iot-lab/parts/contiki/examples/iotlab/04-er-rest-example
+make TARGET=iotlab-m3
+iotlab-node --flash er-example-client.iotlab-m3 -l lille,m3,32
+iotlab-node --flash er-example-server.iotlab-m3 -l lille,m3,31
+
+
+```
+
+|          Nodes           | UID  |  type       |
+|:------------------------:|:---- |:-----------:|
+| m3-30.lille.iot-lab.info | a389 | router      |
+| m3-31.lille.iot-lab.info | 1954 | server      |
+| m3-32.lille.iot-lab.info | 3358 | client      |
+| m3-33.lille.iot-lab.info | 3158 | http-server |

@@ -1,0 +1,73 @@
+## TP2
+
+- Énoncé https://drive.google.com/file/d/1nS4mk0fHeocC8q4htI4TaQvGp109988l/view
+
+### Create the experiment
+
+```txt
+# I am rich I take four of them
+m3-142.lille.iot-lab.info
+m3-149.lille.iot-lab.info
+m3-150.lille.iot-lab.info
+m3-159.lille.iot-lab.info
+```
+
+### Do commands now
+
+```bash
+ssh iotlab # because I have it in my ssh config
+wget https://www.dropbox.com/s/p5ezah2b4ke2y74/Files_TP.tar
+mkdir tp2
+# untar in directory
+tar -xvf Files_TP.tar -C tp2
+```
+
+- Get an IP at https://www.iot-lab.info/legacy/tutorials/understand-ipv6-subnetting-on-the-fit-iot-lab-testbed/index.html
+
+```bash
+# I choose 2001:660:4403:0499::1/64
+sudo tunslip6.py -v2 -L -a m3-159 -p 20000 2001:660:4403:0499::1/64
+# flash the border router
+iotlab-node --flash border-router.iotlab-m3 -l lille,m3,159
+# tunslip show print the IP of the border router
+# in my case it is 2001:660:4403:499::1657
+
+# flash the http
+iotlab-node --flash http-server.iotlab-m3 -l lille,m3,150
+
+# flash the coap
+iotlab-node --flash er-example-server.iotlab-m3 -l lille,m3,149
+
+
+lynx -dump http://[2001:660:4403:499::1657]
+```
+
+```
+   Neighbors
+fe80::b089
+fe80::1057
+
+   Routes
+2001:660:4403:499::1057/128 (via fe80::1057) 1794s
+2001:660:4403:499::b089/128 (via fe80::b089) 1793s
+```
+
+```bash
+lynx -dump http://[2001:660:4403:499::1057]
+#    {"Pressure": 3112960}
+
+aiocoap-client coap://[2001:660:4403:499::b089]:5683/sensors/pressure
+# 998
+
+time aiocoap-client coap://[2001:660:4403:499::b089]:5683/sensors/pressure
+# real    0m0.201s
+
+
+time lynx -dump http://[2001:660:4403:499::1057]
+# real    0m0.327s
+```
+
+COAP is
+
+- faster which is pretty neat
+- energy efficient

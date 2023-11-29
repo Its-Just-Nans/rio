@@ -1,0 +1,45 @@
+# Utils
+
+
+## SSH Access
+
+https://www.iot-lab.info/legacy/tutorials/ssh-access/
+
+- Create a new SSH key
+- Add the (public) key to the plateform
+
+```bash
+addkeys iotlab # private commmand
+ssh riotp12@paris.iot-lab.info
+```
+
+## Compilation example
+
+- https://www.iot-lab.info/legacy/tutorials/contiki-compilation/
+
+We cross-compile so we need to specify a target
+
+```bash
+# we compile for the iotlab-m3 architecture
+make TARGET=iotlab-m3
+# another architecture is iotlab-a8-m3, but not used in this TP
+```
+
+To start the experiment we need to login
+
+```bash
+iotlab-auth -u login
+```
+
+## Public IPv6
+
+- https://www.iot-lab.info/legacy/tutorials/contiki-public-ipv6-m3/
+
+## Change parameters
+
+- change or create `project-conf.h`
+
+```c
+#undef RF_CHANNEL
+#define RF_CHANNEL                     18
+```
