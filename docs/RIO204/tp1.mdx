@@ -1,0 +1,258 @@
+# TP1 Vigie 2G
+
+L'objectif de ce TP est d'étudier les principales procédures mises en œuvre sur une interface radio GSM. Pour les plus courageux d’entre vous, vous pourrez vous reporter avec profit aux recommandations 04.08 et 04.60 pour le GSM sur www.3gpp.org .
+
+## Appel sortant
+
+
+1. Dans quel état est le mobile au début de la trace ?
+
+Veille
+
+2. Que s'est-il passé avant le début de la trace ?
+
+Procédure d'inscription
+
+3. Quels sont les 2 types de message diffusés vers le terminal avant l'accès aléatoire ?
+
+RR System Information et RR Paging Request
+
+
+4. Pourquoi envoie-t-on des messages de paging ne contenant aucune information (bits de bourrage 2B) ?
+
+Car la voie balise doit rester à emission constante.
+
+5. Que se passe-t-il à votre avis quand le canal BCCH s'allume en vert (au lieu de bleu) dans Vigie ?
+
+Ecoute de BCCH de cellules voisines
+
+6. A quel message correspond l'accès aléatoire ?
+
+RR Random Access
+
+7. Sur quel canal logique est-il envoyé ?
+
+RACH
+
+8. A quel message correspond la réponse à l'accès aléatoire ?
+
+RR Immediate Assignment
+
+9. Sur quel canal logique est-il envoyé ?
+
+AGCH
+
+10. Quel nombre a été tiré aléatoirement par le terminal et retrouve-t-on dans cette réponse ?
+
+41
+
+11. Quel canal logique a été attribué au terminal ?
+
+SDCCH (+ SACCH)
+
+12. Quel sous-canal de la multitrame a été attribué au terminal ?
+
+SDCCH D1
+
+13. A quel message correspond la demande de service ?
+
+CM Service Request
+
+14. Sur quel canal logique est-il envoyé ?
+SDCCH
+
+15. Quelle information d'identité de l'utilisateur retrouve-t-on dans ce message ?
+
+TMSI
+
+16. A quels messages correspond l'authentification ?
+
+MM Authentication Request et MM Authentication Response
+
+17. Sur quel canal logique sont-ils envoyés ?
+
+SDCCH
+
+18. A quels messages correspond l'activation du chiffrement ?
+
+RR Ciphering Mode Command et RR Ciphering Mode Complete
+
+19. Sur quel canal logique sont-ils envoyés ?
+
+SDCCH
+
+20. A la suite de quel message le terminal bascule-t-il sur un canal de trafic ?
+
+RR Assignment Command
+
+21. Sur quel canal logique ce message est-il envoyé ?
+
+SDCCH
+
+22. Quel message acquitte le basculement sur le canal de trafic ?
+
+RR Assignment Complete
+
+23. Sur quel canal logique ce message est-il envoyé ?
+
+FACCH
+
+24. Par quel message le terminal demande-t-il l'établissement de l'appel vers son correspondant (le nom du message est manquant dans la trace mais est dans le cours) ?
+
+CC Setup
+
+25. Quel numéro de téléphone le terminal cherche-t-il à joindre, sachant que c'est un numéro interne à Télécom ParisTech (préfixe 01 45 81 xx xx) ?
+
+01 45 81 73 52
+
+26. Quel message déclenche la tonalité sur le terminal ?
+
+CC Alerting
+
+27. A quel message correspond le décrochage ?
+
+CC Connect
+
+28. Et le raccrochage ?
+
+CC Disconnect
+
+29. Qui a raccroché ?
+
+Le terminal de trace
+
+30. Sur quel canal logique les messages de signalisation d'appel ont-ils été envoyés ?
+
+FACCH
+
+31. A quoi sert le message CC Release ?
+
+Libération des ressources circuit
+
+32. A quoi sert le message RR Channel Release ?
+
+Libération des ressources radio
+
+33. Au cours de la communication, des messages de maintenance de la communication ont-ils été émis sur la voie descendante ?
+
+Oui
+
+34. Au cours de la communication, des messages de maintenance de la communication ont-ils été émis sur la voie montante ?
+
+Oui
+
+35. Si vous avez répondu "oui" à une des deux questions précédentes quel(s) est(sont) ce(s) message(s) ?
+
+RR Measurement Report et RR System Information
+
+36. Sur quel canal logique les messages de maintenance ont-ils été envoyés avant le basculement sur le canal de trafic ?
+
+SACCH
+
+37. Sur quel canal logique les messages de maintenance ont-ils été envoyés après le basculement sur le canal de trafic ?
+
+SACCH
+
+38. Dans quel état se trouve le terminal à la fin de la trace ?
+Veille
+
+## Appel entrant
+
+39. Par quelle procédure le terminal est-il réveillé ?
+
+La procédure de paging
+
+40. Peut-on savoir quel message précisément a réveillé le terminal ?
+
+Oui
+
+41. Si oui, comment reconnait-on ce message ?
+
+Il contient le TMSI du terminal
+
+42. Dans quel message se trouve le numéro de l'appelant ?
+
+CC Setup
+
+43. Quelles sont les différences entre les messages de signalisation d'appel de cette trace et de la précédente ?
+
+- Il manque le message CM Service Request dans cette trace
+- Le sens d'envoi des messages est inversé (établissement, tonalité, décrochage)
+
+
+## Envoi d'un sms
+
+44. Pourquoi observe-t-on plusieurs messages "RR Immediate Assignment" après l'accès aléatoire ?
+
+- Parce que plusieurs utilisateurs se connectent en même temps dans la cellule
+
+45. Comment le terminal sait quel message "RR Immediate Assignment" est le bon ?
+
+Il contient le nombre qu'il a envoyé lors de l'accès aléatoire
+
+46. Sur quel canal logique est envoyé le SMS ?
+
+SDCCH
+
+47. Pourquoi ?
+
+Le SMS est de la signalisation
+
+48. A quoi correspond l'acquittement "SMS CP-ACK" ?
+
+Acquittement de la transmission au réseau coeur
+
+49. Sachant qu'un seul SMS a été émis par l'utilisateur pour enregistrer cette trace, à quoi correspond le 2ème SMS observé ?
+
+Accusé de réception du destinataire
+
+## Resélection
+
+50. Quelles sont les deux cellules impliquées dans cette resélection ?
+
+Le terminal quitte la cellule 1991 pour la cellule 1482
+
+51. Qu'est-ce qui a déclenché cette resélection ?
+
+Le critère C2 de la cellule 1482 est devenu meilleur que celui de la cellule 1991
+
+52. Où trouve-t-on les paramètres nécessaires pour justifier cette resélection ?
+
+- Certains paramètres sont diffusés sur la voie balise de la cellule courante
+- Certains paramètres sont diffusés sur la voie balise des cellules voisines
+- Le terminal connait ses propres capacités
+
+53. Cette resélection entraîne-t-elle un envoi dans le réseau ?
+
+Non
+
+54. Pourquoi ?
+
+Les 2 cellules appartiennent à la même zone de localisation LAI.
+
+## Handover
+
+55. Les mesures lues dans le tableau de mesures justifient-elles l'utilité de ce handover (attendre l'envoi des mesures sur la nouvelle cellule) ?
+
+Oui
+
+56. Peut-on être sur que c'est là la raison de ce handover ?
+0/1
+Oui
+Non
+
+57. Quel message contient l'ordre de handover ?
+
+RR Handover Command
+
+58. Quel identifiant de l'utilisateur contient-il ?
+
+La référence de handover HO ref
+
+59. Quel message signifie la fin de la procédure de handover ?
+
+RR Handover Complete
+
+60. Pourquoi certaines informations de l'écran "Configuration BTS courante" sont-elles remplies avant le passage sur la nouvelle cellule ?
+
+Elles sont envoyées avec l'ordre de handover
