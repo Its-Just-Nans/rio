@@ -1,0 +1,456 @@
+# TP2 Vigie 3G
+
+
+## Question de cours
+
+<details>
+<summary>1. Qu'est-ce qu'une connexion RRC ?</summary>
+
+Un ensemble de SRB permettant à un utilisateur d'échanger de la signalisation avec le réseau
+
+</details>
+
+<details>
+<summary>2. Entre quels équipements est-elle établie ? (2 choix)</summary>
+
+- UE
+- RNC
+
+
+## Appel sortant
+
+</details>
+
+<details>
+<summary>3. Quelle information d'identité se trouve dans le message RRC Connection Request ?</summary>
+
+TMSI + LAI
+
+</details>
+
+<details>
+<summary>4. Quelle est sa valeur ?</summary>
+
+TMSI = 0010 0110 1110 1110 0111 1001 1110 0110
+LAI = MCC + MNC + LAC = 208 + 20 + 0100 1110 0011 1111
+
+</details>
+
+<details>
+<summary>5. Quelle information de mesure se trouve dans le message RRC Connection Request ?</summary>
+
+CPICH Ec/No
+
+</details>
+
+<details>
+<summary>6. Quelle est sa valeur ?</summary>
+
+13
+
+</details>
+
+<details>
+<summary>7. Sur quel canal la mesure a-t-elle été effectuée ?</summary>
+
+CPICH
+
+</details>
+
+<details>
+<summary>8. Quelle est la cause d'établissement de la connexion RRC ?</summary>
+
+originatingConversationalCall
+
+</details>
+
+<details>
+<summary>9. Dans le message RRC Connection Setup, combien de SRB sont établis ?</summary>
+
+4
+
+</details>
+
+<details>
+<summary>10. Quel mode RLC est utilisé pour le SRB 1  établi dans ce message ?</summary>
+
+Non acquitté (UM)
+
+</details>
+
+<details>
+<summary>11. Quel mode RLC est utilisé pour le SRB 2  établi dans ce message ?</summary>
+
+Acquitté (AM)
+
+</details>
+
+<details>
+<summary>12. A quel type de canal logique correspond un SRB ?</summary>
+
+DCCH
+
+</details>
+
+<details>
+<summary>13. Sur quel type de canal de transport les SRB sont-ils mappés dans le message RRC Connection Setup ?</summary>
+
+DCH
+
+</details>
+
+<details>
+<summary>14. Combien de canaux de transport de ce type sont établis dans ce message ?</summary>
+
+1
+
+</details>
+
+<details>
+<summary>15. Sur quel type de canal physique les SRB sont-ils mappés dans le message RRC Connection Setup ?</summary>
+
+DPDCH
+
+</details>
+
+<details>
+<summary>16. Combien de canaux physiques de ce type sont établis dans ce message ?</summary>
+
+1
+
+</details>
+
+<details>
+<summary>17. Quel est le code d'embrouillage attribué à l'UE dans ce message ?</summary>
+
+1450401
+
+</details>
+
+<details>
+<summary>18. A quoi correspondent les messages de type "Direct Transfer" ?</summary>
+
+Ce sont des messages de signalisation NAS encapsulés dans de la signalisation RRC
+
+</details>
+
+<details>
+<summary>19. Quels sont les messages correspondant à l'activation du chiffrement ?</summary>
+
+securityModeCommand et securityModeComplete
+
+</details>
+
+<details>
+<summary>20. Entre quels équipements le chiffrement est-il effectué ?</summary>
+
+Entre l'UE et le RNC
+
+</details>
+
+<details>
+<summary>21. Pourquoi ce ne sont pas des messages cipheringModeCommand ?</summary>
+
+Car le mode sécurisé comprend aussi la protection d'intégrité
+
+</details>
+
+<details>
+<summary>22. Quels sont les messages de maintenance de la liaison ?</summary>
+
+measurementControl et measurementReport
+
+</details>
+
+<details>
+<summary>23. Sont-ils envoyés sur des canaux logiques différents du reste de la signalisation ?</summary>
+
+Non
+
+</details>
+
+<details>
+<summary>24. Que se passe-t-il dans le premier message d'Active Set Update ?</summary>
+
+- Un soft handover
+- Un code d'embrouillage est ajouté en voie descendante
+
+</details>
+
+<details>
+<summary>25. Dans quel message a lieu l'allocation de ressources de trafic utilisateur ?</summary>
+
+radioBearerSetup
+
+</details>
+
+<details>
+<summary>26. Combien de ressources sont établies dans ce message ?</summary>
+
+3
+
+</details>
+
+<details>
+<summary>27. A quel type de canal logique correspondent ces ressources ?</summary>
+
+DTCH
+
+</details>
+
+<details>
+<summary>28. Sur quel type de canal de transport sont-elles mappés dans ce message ?</summary>
+
+DCH
+
+</details>
+
+<details>
+<summary>29. Combien de nouveaux canaux de transport de ce type sont établis dans ce message ?</summary>
+
+3
+
+</details>
+
+<details>
+<summary>30. Sur quel type de canal physique sont-elles mappés dans ce message ?</summary>
+
+DPDCH
+
+</details>
+
+<details>
+<summary>31. Combien de nouveaux canaux physiques de ce type sont établis dans ce message ?</summary>
+
+0
+
+</details>
+
+<details>
+<summary>32. Par quel(s) état(s) RRC le terminal est-il passé au cours de la trace ?</summary>
+
+- Veille
+- CELL_DCH
+
+</details>
+
+<details>
+<summary>33. Dans quel état RRC le terminal est-il à la fin de la trace ?</summary>
+
+- Veille
+
+</details>
+
+<details>
+<summary>34. Quel(s) canal(aux) logique(s) utilise-t-il alors ?</summary>
+
+- PCCH
+- BCCH
+
+</details>
+
+<details>
+<summary>35. Quel(s) canal(aux) de transport utilise-t-il alors ?</summary>
+
+- PCH
+- BCH
+
+</details>
+
+<details>
+<summary>36. Quel(s) canal(aux) physique(s) utilise-t-il alors ?</summary>
+
+
+- S-CCPCH
+- P-CCPCH
+
+</details>
+
+<details>
+<summary>37. Les Master Information Blocks :</summary>
+
+
+- Sont décodés tout le temps
+- Ne comportent pas d'informations systèmes
+- Comportent la liste des SIB activés
+- Comportent la liste des SIB modifiés
+
+</details>
+
+<details>
+<summary>38. Les System Information Blocks (SIB) :</summary>
+
+- Sont décodés en cas de changement
+- Peuvent être découpés en plusieurs messages
+
+</details>
+
+
+## Appel entrant
+
+<details>
+<summary>39. Quel message réveille le terminal ?</summary>
+
+pagingType1
+
+</details>
+
+<details>
+<summary>40. Quel est l'identité de notre terminal cité dans ce message ?</summary>
+
+TMSI
+
+</details>
+
+<details>
+<summary>41. Dans quel autre message peut-on voir cette identité ?</summary>
+
+rrcConnectionRequest
+rrcConnectionSetup
+
+</details>
+
+<details>
+<summary>42. Combien de SRB ont été établis au cours de la trace ?</summary>
+
+4
+
+</details>
+
+<details>
+<summary>43. Combien de RB ont été établis au cours de la trace ?</summary>
+
+3
+
+</details>
+
+<details>
+<summary>44. Quel(s) canal(aux) logique(s) sont utilisé(s) pendant l'appel ?</summary>
+
+- DCCH
+- DTCH
+
+</details>
+
+<details>
+<summary>45. Quel(s) canal(aux) de transport sont utilisé(s) pendant l'appel ?</summary>
+
+DCH
+
+</details>
+
+<details>
+<summary>46. Quel(s) canal(aux) physique(s) sont utilisé(s) pendant l'appel ?</summary>
+
+- DPDCH
+- DPCCH
+
+</details>
+
+<details>
+<summary>47. A combien de cellules le terminal s'est-il connecté pendant cette trace ?</summary>
+
+- 3
+
+</details>
+
+<details>
+<summary>48. Quelles sont leurs codes d'embrouillage ?</summary>
+
+- 317
+- 419
+- 441
+
+</details>
+
+## Session de données
+
+<details>
+<summary>49. Combien de messages rrcConnectionSetup sont destinés à notre terminal ?</summary>
+
+
+1
+
+</details>
+
+<details>
+<summary>50. Qu'est-ce que la signalisation GMM et SM ?</summary>
+
+- De la signalisation NAS
+- De la signalisation du domaine paquet
+
+</details>
+
+<details>
+<summary>51. Combien de SRB ont été établis au cours de la trace ?</summary>
+
+4
+
+</details>
+
+<details>
+<summary>52. Combien de RB ont été établis au cours de la trace ?</summary>
+
+1
+
+</details>
+
+<details>
+<summary>53. Au milieu de la trace, le terminal se remet à décoder la voie balise. Sa connexion RRC est-elle toujours ouverte ?</summary>
+
+Oui
+
+</details>
+
+<details>
+<summary>54. Quel message déclenche ce comportement ?</summary>
+
+radioBearerReconfiguration
+
+</details>
+
+<details>
+<summary>55. Dans quel état RRC le terminal se trouve-t-il alors ?</summary>
+
+CELL_FACH
+
+</details>
+
+<details>
+<summary>56. Quel(s) canal(aux) logique(s) utilise-t-il alors ?</summary>
+
+- BCCH
+- DCCH
+- DTCH
+
+</details>
+
+<details>
+<summary>57. Quel(s) canal(aux) de transport utilise-t-il alors ?</summary>
+
+- RACH
+- FACH
+
+</details>
+
+<details>
+<summary>58. Quel(s) canal(aux) physique(s) utilise-t-il alors ?</summary>
+
+- S-CCPCH
+- PRACH
+
+</details>
+
+<details>
+<summary>59. Du trafic utilisateur peut-il être envoyé et reçu ?</summary>
+
+Oui
+
+</details>
+
+<details>
+<summary>60. Pourquoi voit-on plusieurs messages RRC Connection Setup à ce moment dans la trace ?</summary>
+
+Parce qu'ils sont envoyés sur le canal de transport FACH décodé par le terminal
+
+</details>
