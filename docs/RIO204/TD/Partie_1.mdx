@@ -1,0 +1,240 @@
+---
+sidebar_position: 0
+title: Partie I
+---
+
+# Training QCM
+
+## 1 - Choisir la réponse correcte
+
+- a. La 4G utilise un mécanisme d'authentification mutuelle entre le terminal et le réseau
+- b. En 4G, seul le terminal s'authentifie auprès du réseau
+- c. En 4G, seul le réseau s'authentifie auprès du terminal
+- d. En 4G il n'y a pas de mécanismes d'authentification entre le terminal et le réseau
+
+
+<details>
+<summary>Réponse</summary>
+
+- a. La 4G utilise un mécanisme d'authentification mutuelle entre le terminal et le réseau
+
+---
+
+- le réseau envoie un `rand()`
+- le réseau envoie le `rand()`
+- avec le `rand()` le téléphone va générer une valeur `authentification number`
+- le réseau envoie son `authentification number`
+- si la valeur est la même, le mobile à identifié le réseau.
+
+---
+
+- avec le `rand()` le téléphone calcule le `RES`
+- le réseau calcule le `RES`
+- le téléphone envoie le `RES` au réseau
+- si c'est le même c'est authentifié
+
+</details>
+
+## 2 - Choisir la réponse correcte
+
+- a. En 4G les messages de signalisation sont protégés par une signature (protection par intégrité)
+- b. En 4G il n'y a pas de protection des messages de signalisation par une signature
+- c. En 4G, le trafic utilisateur est protégé par un mécanismes d'intégrité
+- d. En 4G, le trafic et la signalisation sont protégés par des mécanismes d'intégrité
+
+<details>
+<summary>Réponse</summary>
+
+
+- a. En 4G les messages de signalisation sont protégés par une signature (protection par intégrité)
+
+---
+
+Sur la radio, il y a deux MAC:
+
+- un MAC au message NAS
+- un MAC au message RRC
+
+
+</details>
+
+## 3 - Choisir la réponse correcte
+
+- a. La 4G chiffre les messages de signalisation NAS entre le Terminal et le MME
+- b. La 4G chiffre les messages de signalisation NAS entre le Terminal et le SGW
+- c. La 4G chiffre les messages de signalisation NAS entre le Terminal et le enode-b
+- d. La 4G chiffre le trafic utilisateur entre le terminal et le MME
+
+<details>
+<summary>Réponse</summary>
+
+- a. La 4G chiffre les messages de signalisation NAS entre le Terminal et le MME
+
+
+</details>
+
+## 4 - Choisir la réponse correcte
+
+- a. La 4G chiffre le trafic utilisateur entre le terminal et le MME
+- b. La 4G chiffre le trafic utilisateur entre le terminal et le SGW
+- c. La 4G chiffre le trafic utilisateur entre le terminal et le enode-b
+- d. La 4G ne chiffre pas le trafic utilisateur
+
+<details>
+<summary>Réponse</summary>
+
+- c. La 4G chiffre le trafic utilisateur entre le terminal et le enode-b
+
+
+---
+
+La norme 4G ne définit que du chiffrement entre le terminal et l' enode-b. Par contre des chiffrement existent (hors-norme)
+
+</details>
+
+## 5 - Choisir la réponse correcte
+
+- a. La 4G chiffre le trafic de signalisation RRC entre le terminal et le MME
+- b. La 4G chiffre le trafic de signalisation RRC entre le terminal et le SGW
+- c. La 4G chiffre le trafic de signalisation RRC entre le terminal et le enode-b
+- d . La 4G ne chiffre pas le trafic de signalisation RRC
+
+<details>
+<summary>Réponse</summary>
+
+- c. La 4G chiffre le trafic de signalisation RRC entre le terminal et le enode-b
+
+</details>
+
+## 6 - Identifier la réponse fausse
+
+- a. Un terminal 4G a au minimum un APN. Dans le cas contraire il ne peut envoyer des informations vers son réseau de données externe
+- b. Un terminal 4G dispose au minimum d'une adresse IP à la fin de la procédure d'attachement
+- c. La procédure d'attachement 4G n'attribue d'adresse IP à un terminal
+- d. Un terminal 4G a un EPS bearer établi à la fin de la procédure d'attachement.
+
+<details>
+<summary>Réponse</summary>
+
+La réponse **FAUSSE** est
+
+- c. La procédure d'attachement 4G n'attribue d'adresse IP à un terminal
+
+</details>
+
+## 7 - Identifier la réponse fausse
+
+- a. Un enode-b peut allouer plusieurs `Resources Block` à un même terminal sur la voie montante
+- b. Un enode-b peut allouer plusieurs `Resources Block` à un même terminal sur la voie descendante
+- c. Un enode-b ne peut allouer qu'un `Resource Block` à la fois par terminal
+- d. Un enode-b peut allouer simultanément des `Resources Block` sur les voie montantes et descendantes.
+
+<details>
+<summary>Réponse</summary>
+
+La réponse **FAUSSE** est
+
+- c. Un enode-b ne peut allouer qu'un `Resource Block` à la fois par terminal
+
+---
+
+Un `Resource Block` correspond à 180 KHz (1 slot long) dans l'OFDMA
+
+</details>
+
+## 8 - Choisir la réponse qui vous semble correcte
+
+- a. La signalisation NAS est transportée à l'intérieur d'un message RRC
+- b. La signalisation NAS est transportée directement sur la couche PDCP
+- c. La signalisation NAS est transportée directement sur la couche MAC
+- d. La signalisation NAS est transportée directement sur la couche RLC
+
+<details>
+<summary>Réponse</summary>
+
+- a. La signalisation NAS est transportée à l'intérieur d'un message RRC
+
+</details>
+
+## 9 - Choisir la réponse qui vous semble correcte
+
+- a. La signalisation NAS est transportée à l'intérieur d'un message SCTP
+- b. La signalisation NAS est transportée directement sur la couche GTP-U
+- c. La signalisation NAS est transportée directement sur la couche S1AP
+- d. La signalisation NAS est transportée directement sur la couche TCP
+
+<details>
+<summary>Réponse</summary>
+
+- c. La signalisation NAS est transportée directement sur la couche S1AP
+
+---
+
+La pile de protocole est NAS dans S1AP dans SCTP
+
+</details>
+
+## 10 - Vrai ou Faux
+
+- Un terminal a dans sa TAI List les numéro de zone 1 et 2. Il est dans une cellule de la zone 1 et entre dans une cellule de la zone 2. Une procédure de mise à jour de zone d'enregistrement est déclenchée.
+
+<details>
+<summary>Réponse</summary>
+
+- b. Faux
+
+</details>
+
+
+## 11 - Vrai ou Faux
+
+- Un terminal a dans sa TAI List les numéro de zone 1 et 2. Il est dans une cellule de la zone 1 et entre dans une cellule de la zone 3. Une procédure de mise à jour de zone d'enregistrement est déclenchée.
+
+<details>
+<summary>Réponse</summary>
+
+- a. Vrai
+
+---
+
+La zone n'est pas dans la TAI list donc on déclenche un mise à jour
+
+</details>
+
+
+## 12 - Vrai ou Faux
+
+- Un tunnel GTP transporte les datagrammes IP de l'utilisateur mobile entre l'enode-b et le SGW.
+
+<details>
+<summary>Réponse</summary>
+
+- a. Vrai
+
+</details>
+
+
+
+## 13 - Vrai ou Faux
+
+- Un tunnel GTP transporte les datagrammes IP de l'utilisateur mobile entre l'enode-b et le MME.
+
+<details>
+<summary>Réponse</summary>
+
+- b . Faux
+
+</details>
+
+
+
+## 14 - Vrai ou Faux
+
+- Un tunnel GTP transporte les datagrammes IP de l'utilisateur mobile entre le SGW et le PGW.
+
+<details>
+<summary>Réponse</summary>
+
+- a. Vrai
+
+</details>

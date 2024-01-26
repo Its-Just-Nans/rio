@@ -1,0 +1,73 @@
+# Partie II
+
+## 1 - Quelle procédure permet au terminal de changer de eNB tout au long de son déplacement ?
+
+<details>
+<summary>Réponse</summary>
+
+Il est en mode veille, c'est une reselection
+
+</details>
+
+## 2 - Combien de tunnels sont établis sur les interfaces eNB-SGW et SGW-PGW pour permettre au téléphone d'accéder à l'ensemble des APN ?
+
+<details>
+<summary>Réponse</summary>
+
+Les tunnels sont associés a une qualité de service. Si c'est compatible, on peut les combinés.
+
+Il faut 2 tunnels par interface
+
+- Internet **(4)**:
+    - 2 tunnels
+    - 2 tunnels
+- MMS **(4)**:
+    - 2 tunnels
+    - 2 tunnels
+- IMS **(8)**:
+    - pour ___chaque interface___ il faut
+        - 2 tunnels pour la voix
+        - 2 tunnels pour la signalisation
+
+
+Il en faut au total **4** + **4** + **8** = **16**
+
+> Le mobile à minimum 1 IP par APN (plusieurs si IPv4 et IPv6)
+
+</details>
+
+## 3 - On considère le premier changement de eNB. Quelle procédure vont devoir être mises en œuvre au niveau du réseau pour permettre au téléphone d'accéder à l'ensemble de ces services ?
+
+<details>
+<summary>Réponse</summary>
+
+Lors du premier changement, on a une procédure de déplacement de tunnel eNB-SGW
+
+</details>
+
+## 4 - On considère maintenant le second changement de eNB. Quelles procédures vont devoir être mises en œuvre au niveau du réseau pour permettre au téléphone d'accéder à l'ensemble de ces services ?
+
+<details>
+<summary>Réponse</summary>
+
+Lors du second changement, on déplace les tunnels à **deux niveaux**: eNB-SGW et SGW-PGW
+
+</details>
+
+## 5 - Nous supposons maintenant que le téléphone est engagé dans une communication VoLTE (Voix sur IP 4G) initiée depuis le premier eNB. Quelle procédure va devoir être mise en œuvre entre le terminal et le réseau pour préserver la continuité de la session VoLTE lors du premier changement de eNB ?
+
+<details>
+<summary>Réponse</summary>
+
+Un handover inter eNodeB **sans** changement de SGW
+
+</details>
+
+## 6 - Même question que la précédente pour le deuxième changement de eNB.
+
+<details>
+<summary>Réponse</summary>
+
+Un handover inter eNodeB **avec** changement de SGW
+
+</details>
