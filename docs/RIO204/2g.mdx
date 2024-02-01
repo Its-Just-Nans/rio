@@ -1,0 +1,40 @@
+# 2G
+
+
+import Displayer from "./Displayer"
+
+export const diagram = `sequenceDiagram
+    participant MS
+    participant BSS
+    participant MSC as MSC/VLR
+    participant HLR
+    Note over MS, HLR: Le MS est allumé et a sélectionné une cellule
+    MS ->> BSS: MM Location Updating Request (IMSI)
+    Note over MS, HLR: Le MS se connecte pour envoyer un message MM de demande de mise à jour de localisation, il envoie son identité IMSI
+    BSS ->> MSC: BSSMAP Complete L3 Info. [MM Loc. Upd.]
+    MSC ->> HLR: MAP Send Authentication info
+    Note over MS, HLR: Le VLR contacte le HLR de l’abonné (numéro dans l’IMSI) pour obtenir les informations d’authentification (génération d’un triplet de sécurité)
+    HLR ->> MSC: MAP Send Authentication info ack (RAND, SRES, Kc)
+    MSC ->> MS: MM Authentication Request (RAND)
+    MS ->> MSC: MM Authentication Response (SRES)
+    Note over MS, HLR: Authentification
+    MSC ->> HLR: MAP Update Location
+    HLR ->> MSC: MAP Insert Subscriber Data
+    MSC ->> HLR: MAP Insert Subscriber Data Ack
+    HLR ->> MSC: MAP Update Location Ack
+    Note over MS, HLR: Le HLR donne une copie du profil de l’abonné au VLR et inscrit le numéro de VLR dans sa base de données
+    MSC ->> BSS: BSSMAP Cipher Mode Command
+    BSS ->> MS: RR Ciphering Mode Command
+    MS ->> BSS: RR Ciphering Mode Complete
+    BSS ->> MSC: BSSMAP Cipher Mode Complete
+    Note over MS, HLR: Passage en mode chiffré
+    MSC ->> MS: MM TMSI Reallocation Command (TMSI, LAI)
+    MS ->> MSC: MM TMSI Reallocation Complete
+    Note over MS, HLR: Le VLR attribue un identifiant temporaire local au MS : TMSI + LAI
+    MSC ->> MS: MM Location Updating Accept
+    Note over MS, HLR: Fin de la procédure de mise à jour de localisation`
+
+<Displayer name={"Mise à jour de localisation - Inscription"} value={diagram} />
+
+
+
