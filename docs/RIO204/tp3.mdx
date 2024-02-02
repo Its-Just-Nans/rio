@@ -1,0 +1,361 @@
+# TP3 Amarisoft 4G
+
+## Attachement IMS
+
+Dans la colonne de gauche, ouvrez le dossier "Store" et chargez les 3 fichiers enb0.log, ims.log, et mme.log en sélectionnant chaque fichier et en cochant la petite icône verte "Enable/disable" juste au dessus. Une marque en forme de check vert doit être visible à droite du nom de chaque fichier.
+
+Dans la colonne du milieu, affichez uniquement les couches protocolaires GTP-U, IMS, NAS, RRC, S1AP, S6 et S13 grâce au menu "Layer".
+
+
+<details>
+<summary>1. Avec quel(s) équipement(s) du réseau l'eNB est-il en relation ?</summary>
+
+MME et SGW
+
+</details>
+
+<details>
+<summary>2. Avec quel(s) équipement(s) du réseau l'IMS est-il en relation ?</summary>
+
+SGW
+
+</details>
+
+<details>
+<summary>3. Avec quel(s) équipement(s) du réseau le MME est-il en relation ?</summary>
+
+eNB, SGW, HSS, EIR
+
+</details>
+
+<details>
+<summary>4. Avec quel(s) équipement(s) du réseau le SGW est-il en relation ?</summary>
+
+eNB, MME, IMS
+
+</details>
+
+<details>
+<summary>5. On s'intéresse ensuite à la connexion RRC. Quelle est la cause de l'établissement de la connexion RRC donnée dans le message ?</summary>
+
+mo-Signalling
+
+</details>
+
+<details>
+<summary>6. Combien de SRB sont établis dans la connexion RRC ?</summary>
+
+1
+
+</details>
+
+<details>
+<summary>7. Quel est son ou leur mode RLC ?</summary>
+
+AM : Acquitted Mode
+
+</details>
+
+<details>
+<summary>8. Que contient en plus le message "RRC Connection Setup Complete" ?</summary>
+
+Le premier message NAS
+
+</details>
+
+<details>
+<summary>9. Quel est le premier message NAS ?</summary>
+
+Attach Request
+
+</details>
+
+<details>
+<summary>10. Quel protocole est-ce ?</summary>
+
+EMM
+
+</details>
+
+<details>
+<summary>11. Quel protocole transporte ce message NAS sur l'interface S1 ?</summary>
+
+S1AP
+
+</details>
+
+<details>
+<summary>12. Quelle identité l'UE fournit-il ?</summary>
+
+GUTI
+
+</details>
+
+<details>
+<summary>13. Quelle est sa valeur ?</summary>
+
+MCC = 901, MNC = 70, MME Group ID = 32769, MME Code = 1, M-TMSI = 0xf5439f48
+
+</details>
+
+<details>
+<summary>14. Pourquoi le MME envoie un message "Identity Request" ?</summary>
+
+Parce que le MME n'a pas reconnu le GUTI fourni par l'UE
+
+</details>
+
+<details>
+<summary>15. Quelle identité le MME demande ?</summary>
+
+IMSI
+
+</details>
+
+<details>
+<summary>16. Quelle est sa valeur ?</summary>
+
+901700000032319
+
+</details>
+
+<details>
+<summary>17. Quel message est la demande d'authentification ?</summary>
+
+Authentication request
+
+</details>
+
+<details>
+<summary>18. Quels sont les deux paramètres contenus dans le message de demande d'authentification ?</summary>
+
+RAND et AUTN
+
+</details>
+
+<details>
+<summary>19. A quoi sert le paramètre AUTN ?</summary>
+
+A l'authentification du réseau
+
+</details>
+
+<details>
+<summary>20. Pourquoi une deuxième demande d'authentification est envoyée ?</summary>
+
+La première a échoué.
+
+</details>
+
+<details>
+<summary>21. Pour quelle raison ?</summary>
+
+Il y a eu une perte de synchronisation
+
+</details>
+
+<details>
+<summary>22. La valeur des 2 paramètres de la demande d'authentification a-t-elle changé ?</summary>
+
+Oui
+
+</details>
+
+<details>
+<summary>23. Quel est le paramètre contenu dans la réponse à l'authentification ?</summary>
+
+SRES
+
+</details>
+
+<details>
+<summary>24. Quel équipement valide l'authentification de l'UE (cette étape est visible dans la trace bien que ce ne soit pas un message) ?</summary>
+
+MME
+
+</details>
+
+<details>
+<summary>25. Comment sait-on si l'UE a validé l'authentification du réseau ?</summary>
+
+La validation est implicite si l'UE envoie la réponse au message d'authentification
+
+</details>
+
+<details>
+<summary>26. Les messages "Security mode command" et "Security mode complete" sont dans quelle couche protocolaire ? Regardez bien toute la trace.</summary>
+
+NAS et RRC
+
+</details>
+
+<details>
+<summary>27. On s'intéresse au message de sécurité NAS. Combien d'algorithmes sont choisis ?</summary>
+
+2
+
+</details>
+
+<details>
+<summary>28. Pourquoi ?</summary>
+
+Un algorithme de chiffrement, et un algorithme de protection d'intégrité.
+
+</details>
+
+<details>
+<summary>29. Quels sont les algorithmes choisis ?</summary>
+
+EEA0 et EIA2
+
+</details>
+
+<details>
+<summary>30.  Les algorithmes choisis pour la couche RRC sont-ils les mêmes ?</summary>
+
+Oui
+
+</details>
+
+<details>
+<summary>31.  Quelle est l'information demandée dans le message NAS "ESM information request" ?</summary>
+
+L'APN auquel l'UE souhaite se connecter
+
+</details>
+
+<details>
+<summary>32.  Dans le message "Attach Accept", qu'est-ce qui est attribué à l'UE ?</summary>
+
+- Un nouveau GUTI
+
+</details>
+- Une adresse IP
+- un bearer EPS
+
+<details>
+<summary>33.  Quelle est l'adresse IPv4 de l'UE ?</summary>
+
+192.168.4.2
+
+</details>
+
+<details>
+<summary>34.  Quelle est l'adresse IPv6 de l'UE ?</summary>
+
+::2001:468:3000:1
+
+</details>
+
+<details>
+<summary>35.  Pourquoi l'adresse IP attribuée à l'UE n'est pas dans le même sous réseau que les autres équipements (eNB, MME/SGW, IMS) ?</summary>
+
+Les messages IP de l'UE sont encapsulés dans GTP pour être routés sur les autres équipements.
+
+</details>
+
+<details>
+<summary>36.  Quelle est la QoS du bearer attribué ?</summary>
+
+5
+
+</details>
+
+<details>
+<summary>37.  A quel service ce bearer permet-il d'accéder</summary>
+
+IMS
+
+</details>
+
+<details>
+<summary>38.  Quelle est la valeur du M-TMSI attribué à l'UE ?</summary>
+
+85d82bc2
+
+</details>
+
+<details>
+<summary>39.  Que pouvez-vous dire du GUMMEI obtenu dans ce message par rapport à l'ancien GUMMEI de l'UE ?</summary>
+
+Ils sont identiques. L'UE était attaché au même MME.
+
+</details>
+
+<details>
+<summary>40.  Dans le message RRC "Connection reconfiguration", combien de SRB sont ajoutés ?</summary>
+
+1
+
+</details>
+
+<details>
+<summary>41.  Et combien de DRB ?</summary>
+
+1
+
+</details>
+
+<details>
+<summary>42.  Dans le premier message IMS envoyé, comment pouvez-vous identifier l'UE concerné par le register ?</summary>
+
+Grâce à l'IMSI contenu
+
+</details>
+
+<details>
+<summary>43.   Entre quels équipements un tunnel GTP est-il établi ?</summary>
+
+L'eNB et le SGW
+
+</details>
+
+<details>
+<summary>44.  Combien y a-t-il d'identifiants de tunnel ?</summary>
+
+2
+
+</details>
+
+<details>
+<summary>45.  Pourquoi ?</summary>
+
+
+
+</details>
+Pour différencier le sens, le premier est du CN vers l'eNB et le deuxième de l'eNB vers le CN.
+
+<details>
+<summary>46.  Quel(s) est ou sont le ou les identifiants de ce tunnel ?</summary>
+
+c8a326a8 et 8bbf9d31
+
+</details>
+
+<details>
+<summary>47.  Quel protocole est encapsulé dans GTP ?</summary>
+
+IP
+
+</details>
+
+<details>
+<summary>48.  Descendez à la fin de la trace. Quel message NAS signale la fin de la procédure ?</summary>
+
+Detach request
+
+</details>
+
+<details>
+<summary>49.  Qui est à l'origine de la fin de la procédure ?</summary>
+
+L'UE
+
+</details>
+
+<details>
+<summary>50.  A la toute fin de la trace, on retrouve des "messages" internes sans flèche. A quoi correspondent-ils ?</summary>
+
+A l'extinction des équipements.
+
+</details>
