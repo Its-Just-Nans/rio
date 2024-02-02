@@ -5,7 +5,7 @@
 <details>
 <summary>Réponse</summary>
 
-Il est en mode veille, c'est une reselection
+Le terminal ne transmet et reçoit pas d'information durant son déplacement. Il est en mode veille. Par conséquent, la procédure de reselection détermine si un changement de cellule doit s'effectuer tout au long du déplacement du terminal.
 
 </details>
 
@@ -13,6 +13,10 @@ Il est en mode veille, c'est une reselection
 
 <details>
 <summary>Réponse</summary>
+
+Le terminal peut accéder à trois APN. Il y a au minimum deux tunnels par APN et par interface. Par conséquent, il y a au minimum 12 tunnels si le terminal souhaite accéder aux trois réseaux externes (IMS, MMS, Internet).
+
+---
 
 Les tunnels sont associés a une qualité de service. Si c'est compatible, on peut les combinés.
 
@@ -41,8 +45,7 @@ Il en faut au total **4** + **4** + **8** = **16**
 <details>
 <summary>Réponse</summary>
 
-Lors du premier changement, on a une procédure de déplacement de tunnel eNB-SGW
-
+Le terminal change de cellule et d'eNB. L'eNB source et l'eNB destination sont rattachés au même SGW. Par conséquent il faut déplacer les tunnels existants entre l'eNB source et le SGW vers l'interface eNB destination - SGW. Les tunnels existants entre le SGW et le PGW demeurent inchangés.
 </details>
 
 ## 4 - On considère maintenant le second changement de eNB. Quelles procédures vont devoir être mises en œuvre au niveau du réseau pour permettre au téléphone d'accéder à l'ensemble de ces services ?
@@ -50,8 +53,7 @@ Lors du premier changement, on a une procédure de déplacement de tunnel eNB-SG
 <details>
 <summary>Réponse</summary>
 
-Lors du second changement, on déplace les tunnels à **deux niveaux**: eNB-SGW et SGW-PGW
-
+L'eNB source et l'eNB destination sont rattachés à deux SGW différents. Par conséquent il faut déplacer les tunnels de l'interface eNB source – SGW source vers l'interface eNB destination – SGW destination. De même, il est nécessaire déplacer les tunnels de l'interface SGW source – PGW vers l'interface SGW destination – PGW.
 </details>
 
 ## 5 - Nous supposons maintenant que le téléphone est engagé dans une communication VoLTE (Voix sur IP 4G) initiée depuis le premier eNB. Quelle procédure va devoir être mise en œuvre entre le terminal et le réseau pour préserver la continuité de la session VoLTE lors du premier changement de eNB ?
@@ -59,7 +61,7 @@ Lors du second changement, on déplace les tunnels à **deux niveaux**: eNB-SGW 
 <details>
 <summary>Réponse</summary>
 
-Un handover inter eNodeB **sans** changement de SGW
+Le service VoLTE s'appuie sur l'interface radio 4G. En conséquence, c'est une procédure de handover inter eNB sans changement de SGW qui va devoir être mise en œuvre pour garantir la continuité de la communication.
 
 </details>
 
@@ -68,6 +70,6 @@ Un handover inter eNodeB **sans** changement de SGW
 <details>
 <summary>Réponse</summary>
 
-Un handover inter eNodeB **avec** changement de SGW
+Le second changement de eNB implique également un changement de SGW. C'est donc une procédure de handover inter eNB avec changement de SGW qui va devoir être mise en œuvre pour garantir la continuité de la communication.
 
 </details>
