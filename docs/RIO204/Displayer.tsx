@@ -1,7 +1,7 @@
 import Mermaid from "@theme/Mermaid";
-import { useState, Fragment } from "react";
+import { useState, Fragment, useMemo } from "react";
 
-const useDecodeDiagrams = (diagram: string) => {
+const decodeDiagrams = (diagram: string) => {
     const lines = diagram.split("\n");
     const start = lines.findIndex(
         (oneLine) => !(oneLine.includes("participant") || oneLine.includes("sequenceDiagram"))
@@ -21,29 +21,40 @@ const useDecodeDiagrams = (diagram: string) => {
     return [base, ...diagrams];
 };
 
-const buttonStyle = { flex: 1, padding: "20px", margin: "10px" };
+const buttonStyle = { flex: 0.4, padding: "20px", margin: "10px" };
+const buttonStyleMinus = { flex: 0.1, padding: "20px", margin: "10px" };
 
 export const Displayer = ({ value, name }) => {
-    const diagrams = useDecodeDiagrams(value);
+    const diagrams = useMemo(() => {
+        return decodeDiagrams(value);
+    }, [value]);
     const [index, setIndex] = useState<number>(0);
 
     if (!diagrams.length) {
         return null;
     }
 
-    console.log(diagrams[index]);
     return (
         <Fragment>
             <h3>{name}</h3>
             <div style={{ display: "flex" }}>
                 <button
-                    style={buttonStyle}
+                    style={buttonStyleMinus}
                     onClick={() => {
-                        setIndex((i) => --i);
+                        setIndex(0);
                     }}
                     disabled={index === 0}
                 >
-                    Previous
+                    ⏮️
+                </button>
+                <button
+                    style={buttonStyle}
+                    onClick={() => {
+                        setIndex(() => --i);
+                    }}
+                    disabled={index === 0}
+                >
+                    ◀️
                 </button>
 
                 <button
@@ -53,7 +64,16 @@ export const Displayer = ({ value, name }) => {
                     }}
                     disabled={index >= diagrams.length - 1}
                 >
-                    Next
+                    ▶️
+                </button>
+                <button
+                    style={buttonStyleMinus}
+                    onClick={() => {
+                        setIndex(diagrams.length - 1);
+                    }}
+                    disabled={index >= diagrams.length - 1}
+                >
+                    ⏭️
                 </button>
             </div>
             <Mermaid value={diagrams[index]} />
