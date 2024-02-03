@@ -50,7 +50,7 @@ export const Displayer = ({ value, name }) => {
                 <button
                     style={buttonStyle}
                     onClick={() => {
-                        setIndex(() => --i);
+                        setIndex((i) => --i);
                     }}
                     disabled={index === 0}
                 >

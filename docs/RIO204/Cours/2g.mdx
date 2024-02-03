@@ -3,11 +3,11 @@
 
 import Displayer from "../Displayer"
 
-export const diagram = `sequenceDiagram
+export const diagram1 = `sequenceDiagram
     participant MS
     participant BSS
     participant MSC as MSC/VLR
-    participant HLRinfo
+    participant HLR
     Note over MS, HLR: Le MS est allumé et a sélectionné une cellule
     MS ->> BSS: MM Location Updating Request (IMSI)
     Note over MS, HLR: Le MS se connecte pour envoyer un message MM de demande de mise à jour de localisation, il envoie son identité IMSI
@@ -34,7 +34,47 @@ export const diagram = `sequenceDiagram
     MSC ->> MS: MM Location Updating Accept
     Note over MS, HLR: Fin de la procédure de mise à jour de localisation`
 
-<Displayer name={"Mise à jour de localisation - Inscription"} value={diagram} />
+<Displayer name={"Mise à jour de localisation - Inscription"} value={diagram1} />
+
+---
+
+export const diagram2 = `sequenceDiagram
+    participant MS
+    participant BSS
+    participant MSC as MSC/VLR
+    participant HLR
+    participant HLR2 as Ancien HLR
+    Note over MS, HLR2: Le MS observe un changement de zone de localisation LAI après une resélection
+    MS ->> BSS: MM Location Updating Request (TMSI, LAI)
+    BSS ->> MSC: BSSMAP Complete L3 Info. [MM Loc. Upd.]
+    Note over MS, HLR2: Le MS se connecte pour envoyer un message MM de demande de mise à jour de localisation, il envoie son identité temporaire locale TMSI + LAI
+    MSC ->> HLR2: MAP Send Identification info (TMSI)
+    HLR2 ->> MSC: MAP Send Ident. info ack (IMSI, RAND, SRES, Kc)
+    Note over MS, HLR2: Le nouveau VLR contacte l'ancien VLR (connu par le LAI) pour obtenir les informations du MS : IMSI et triplet de sécurité
+    MSC ->> MS: MM Authentication Request (RAND)
+    MS ->> MSC: MM Authentication Response (SRES)
+    Note over MS, HLR2: Authentification
+    MSC ->> HLR: MAP Update Location
+    Note over MS, HLR2: Le nouveau VLR contacte le HLR de l'abonné
+    HLR ->> HLR2: MAP Cancel Location
+    HLR2 ->> HLR: MAP Cancel Location Ack
+    Note over MS, HLR2: Le HLR efface le profil de l'abonné dans l'ancien VLR
+    HLR ->> MSC: MAP Insert Subscriber Data
+    MSC ->> HLR: MAP Insert Subscriber Data Ack
+    HLR ->> MSC: MAP Update Location Ack
+    Note over MS, HLR2: Le HLR donne une copie du profil de l'abonné au nouveau VLR et inscrit le numéro du nouveau VLR dans sa base de données
+    MSC ->> BSS: BSSMAP Cipher Mode Command
+    BSS ->> MS: RR Ciphering Mode Command
+    MS ->> BSS: RR Ciphering Mode Complete
+    BSS ->> MSC: BSSMAP Cipher Mode Complete
+    Note over MS, HLR2: Passage en mode chiffré
+    MSC ->> MS: MM TMSI Reallocation Command (TMSI, LAI)
+    MS ->> MSC: MM TMSI Reallocation Complete
+    Note over MS, HLR2: Le nouveau VLR attribue un nouvel identifiant temporaire local au MS : TMSI + LAI
+    MSC ->> MS: MM Location Updating Accept
+    Note over MS, HLR2: Fin de la procédure de mise à jour de localisation`
+
+<Displayer name={"Mise à jour de localisation - Différents VLR"} value={diagram2} />
 
 
 
