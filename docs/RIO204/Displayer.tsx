@@ -14,7 +14,7 @@ const decodeDiagrams = (diagram: string) => {
             "\n" +
             data
                 .slice(0, index + 1)
-                .filter((a, indexCurrent) => !a.includes("Note") || (a.includes("Note") && indexCurrent === index))
+                .filter((a, indexCurrent) => !a.includes("Note over") || (a.includes("Note") && indexCurrent === index))
                 .join("\n")
         );
     });

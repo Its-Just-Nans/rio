@@ -1,0 +1,32 @@
+---
+title: Accès aléatoire
+sidebar_position: 2
+---
+
+import Displayer from "../../Displayer"
+
+export const diagram1 = `sequenceDiagram
+    participant MS
+    participant BTS
+    participant BSC
+    participant MSC
+    MS ->> BTS: RR Random Access (nb aléatoire)<br/>RACH
+    Note over MS, MSC: Le MS envoie un burst contenant un nombre aléatoire
+    BTS ->> BSC: Channel Required
+    BSC ->> BTS: Channel Activation
+    BTS ->> BSC: Channel Activation Ack.
+    Note over MS, MSC: Réservation d’un canal dédié SDCCH par le BSC
+    BSC ->> BTS: Immediate Assignment Command
+    BTS ->> MS: RR Immediate Assignment (écho nb aléat., heure, TA)<br/>AGCH
+    Note over MS, MSC: Réponse à l’accès aléatoire (allocation du canal SDCCH)
+    MS ->> BTS: SABM [MM CM Service Request (TMSI, Classmark)]<br/>SDCCH
+    Note over MS, MSC: Commutation sur le canal SDCCH
+    BTS ->> BSC: Establish Indication [CM Service Request]
+    Note over MS, MSC: Le MS fait sa demande de service (signalisation CM), il envoie son TMSI et sa classmark
+    BSC ->> MSC: SCCP Connection Request [BSSMAP Complete L3 Info. [CM Service Request]]
+    Note over MS, MSC: Ouverture de la connexion SCCP entre le BSC et le MSC
+    BTS ->> MS: UA <br/>SDCCH
+    Note over MS, MSC: Ouverture de la connexion LAPDm entre le MS et la BTS
+    Note over MS, MSC: Traitement du service`
+
+<Displayer name={"Accès aléatoire"} value={diagram1} />
