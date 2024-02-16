@@ -1,0 +1,103 @@
+# TD1
+
+## Exercice 1 : Questions diverses sur LTE
+
+### Couche PHY
+
+Question 1 Répondez succinctement aux questions suivantes.
+
+
+<details>
+<summary>a. Quelles sont les techniques de transmission et de multiplexage DL et UL ?</summary>
+
+OFDMA (DL) et SC-FDMA (UL)
+
+</details>
+
+<details>
+<summary>b. Quelles sont les modulations utilisées en DL et en UL ?</summary>
+
+DL : QPSK, 16-QAM, 64-QAM ; UL : idem mais 64-QAM seulement pour les terminaux de cat. 5
+
+</details>
+
+
+<details>
+<summary>c. Quel est le duplexage ?</summary>
+
+FDD
+
+</details>
+
+
+<details>
+<summary>d. Quelles sont les principales bandes spectrales utilisées en LTE ?</summary>
+
+En France : 800MHz, 1800MHz, 2600MHz
+
+</details>
+
+
+<details>
+<summary>e. Quels sont les avantages et inconvénients de l'OFDM ?</summary>
+
+Avantages :
+
+- 1) faible coût et simplicité de la modulation et de la démodulation
+- 2) efficacité spectrale
+- 3) lutte contre la propagation multi-trajet
+
+Inconvénients :
+
+- 1) interférence entre sous-porteuses
+- 2) fort PAPR
+
+</details>
+
+
+<details>
+<summary>f. Pourquoi doit-on réduire le PAPR sur l'UL ? Quelle est la solution choisie ?</summary>
+
+Un fort PAPR réduit l’efficacité des amplificateurs de puissance. On choisit SC-FDMA sur le UL
+
+</details>
+
+
+<details>
+<summary>g. Quelle est la bande d'une sous-porteuse ?</summary>
+
+15 kHz
+
+</details>
+
+
+<details>
+<summary>h. Quelles sont les configurations MIMO typiques en LTE ?</summary>
+
+Au début de la 4G : 2x2 puis 4x4, maintenant : 8x8
+
+</details>
+
+
+<details>
+<summary>i. Décrire la trame radio FDD préfixe court.</summary>
+
+1 trame de 10ms comprend 10 sous-trames de 1 ms, chaque sous-trame est divisée en 2 slots de 0.5ms, chaque slot comprend 7 symboles OFDM (préfixe cyclique normal)
+
+</details>
+
+
+<details>
+<summary>j. Pourquoi y-a-t-il deux slots par sous-trame ?</summary>
+
+Pour permettre du saut de fréquence intra-sous-trame.
+
+</details>
+
+
+<details>
+<summary>k. Qu'est-ce qu'un RE ? un RB ?</summary>
+
+1RE=1 sous-porteuse pendant 1 symbole OFDM, 1RB=12 sous-porteuses pendant 7 symboles OFDM
+
+</details>
