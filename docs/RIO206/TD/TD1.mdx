@@ -58,7 +58,7 @@ Inconvénients :
 <details>
 <summary>f. Pourquoi doit-on réduire le PAPR sur l'UL ? Quelle est la solution choisie ?</summary>
 
-Un fort PAPR réduit l’efficacité des amplificateurs de puissance. On choisit SC-FDMA sur le UL
+Un fort PAPR réduit l'efficacité des amplificateurs de puissance. On choisit SC-FDMA sur le UL
 
 </details>
 
@@ -101,3 +101,104 @@ Pour permettre du saut de fréquence intra-sous-trame.
 1RE=1 sous-porteuse pendant 1 symbole OFDM, 1RB=12 sous-porteuses pendant 7 symboles OFDM
 
 </details>
+
+
+## Canaux physiques, de transport et logiques
+
+Question 2 Répondez succinctement aux questions suivantes.
+
+<details>
+<summary>a. Quels sont les canaux physiques dédiés en LTE ?</summary>
+
+Il n'y a pas de canaux physiques dédiés.
+
+</details>
+
+<details>
+<summary>b. Comment l'UE connaît-il l'identité physique de la cellule ?</summary>
+
+En utilisant le PSS et le SSS.
+
+</details>
+
+<details>
+<summary>c. Comment l'UE peut-il connaître la bande du signal ?</summary>
+
+Il lit le PBCH.
+
+</details>
+
+<details>
+<summary>d. Combien de symboles OFDM les PDCCH occupent-ils ?</summary>
+
+De 1 à 4 symboles OFDM.
+
+</details>
+
+
+<details>
+<summary>e. Comment l'UE est-il informé de ce nombre ?</summary>
+
+En lisant le PCFICH (CFI)
+
+</details>
+
+
+<details>
+<summary>f. Sur quel canal l'allocation de ressources est-elle faite ?</summary>
+
+Sur le PDCCH, messages DCI.
+
+</details>
+
+
+<details>
+<summary>g. Quelle est la différence entre le PUSCH et le PUCCH ?</summary>
+
+PUCCH : contrôle, PUSCH : données+contrôle
+
+</details>
+
+<details>
+<summary>h. Quelle est la différence entre les DMRS et les SRS ?</summary>
+
+Les DMRS sont utilisés pour la démodulation du signal, les SRS pour l'estimation de la qualité du canal sur une large bande et pour l'estimation de l'avance en temps après l'accès.
+
+</details>
+
+<details>
+<summary>i. Pourquoi les DMRS UL sont-ils multiplexés en temps alors que les RS DL sont multiplexés en temps et fréquence ?</summary>
+
+En SC-FDMA, les symboles QAM émis par un UE sont multiplexés en temps.
+
+</details>
+
+<details>
+<summary>j. Sur quels canaux de transport les informations systèmes sont-elles diffusées ?</summary>
+
+MIB : BCH, SIB : DL-SCH.
+
+</details>
+
+<details>
+<summary>k. Quels types d'informations sont transportés par les messages DCI ?</summary>
+
+Essentiellement : indications d'allocation de ressources, information pour l'adaptation de lien (MCS), informations HARQ (numéro de processus, indicateur de nouvelle transmission).
+
+</details>
+
+<details>
+<summary>l. Quel est le DCI qui permet d'allouer des ressources UL ?</summary>
+
+DCI0
+
+</details>
+
+
+<details>
+<summary>m. Sur quels canaux physiques les messages UCI sont-ils transmis ?</summary>
+
+PUSCH quand il y a des données à transmettre, PUCCH sinon.
+
+</details>
+

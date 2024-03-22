@@ -1,0 +1,256 @@
+---
+title: "TP2"
+---
+
+## TP2 - SIM card
+
+:::warning
+Ce TP est a but éducatif uniquement
+:::
+
+![](./imgs/IMG_20240228_084009.jpg)
+
+## Début
+
+- On démarre notre VM
+- On branche le lecteur USB
+- On vérifie qu'on détecte bien qu'on voit le lecteur carte SIM
+
+![](./imgs/upload_fecc5f81036809d2bd0b254cf33be4ba.png)
+
+La carte SIM parle en utilisant le protocole APDU : [https://fr.wikipedia.org/wiki/Application_Protocol_Data_Unit](https://fr.wikipedia.org/wiki/Application_Protocol_Data_Unit)
+
+## PCSC server
+
+On clone le repo de pysim (le mirroir sur github)
+
+```sh
+git clone https://github.com/osmocom/pysim
+```
+
+On fait l'installation des logiciels pré-requis
+
+```sh
+sudo apt-get install --no-install-recommends \
+    pcscd libpcsclite-dev \
+    python3 \
+    python3-setuptools \
+    python3-pycryptodome \
+    python3-pyscard \
+    python3-pip
+```
+
+Dans mon cas, la commande `pcsc_scan` n'est pas installé
+
+```sh
+sudo apt install pcsc-tools
+```
+
+Lorsqu'il est installé, on peut utiliser le scan
+
+```sh
+pcsc_scan
+```
+
+![](./imgs/upload_5eec7f5b480be9cf92cc18db77370d28.png)
+
+On insert la carte, on voit que le serveur pcsc détecte la carte. L'outils `pscs_scan` se met a jour
+
+![](./imgs/upload_87e61756bad18dcab36e7dfedfc53b83.png)
+
+Le serveur `pcsd` tourne en tâche de fond, il permet de communiquer avec la carte
+
+```sh
+cd pysim
+pip3 install --user -r requirements.txt
+```
+
+On peut commencer par faire une lecture recursive des fichiers dans la carte sim avec
+
+```sh
+./pySim-read.py -p0
+```
+
+![](./imgs/upload_60cbcf1bae011e6824350e2fdfc82331.png)
+
+Ceci est une accès simple en lecture, pour un accès interactif, on peut faire
+
+```sh
+./pySim-shell.py -p0
+```
+
+![](./imgs/upload_59a278d1c041d32716076a9f857e417f.png)
+
+On peut voir le système de ficher.
+Les noms avec `DF` veulent dire que c'est des directory, le `EF` sont des fichiers.
+
+Dans le shell, on peut utiliser
+
+```txt
+# lister le contenu
+dir
+
+# afficher les commandes disponibles
+help
+
+# pour rentrer dans le directory et lire le dossier
+select
+
+# Read + decode data from a transparent EF
+read_binary_decoded
+
+# quitter
+quit
+```
+
+On peut par exemple voir l'IMSI. Il a été changé dans les séances de l'année dernière
+
+![](./imgs/upload_4356afd4c9482eefb7d220794613d97e.png)
+
+## get number of cards
+
+```sh
+# download jq
+sudo apt install jq
+```
+
+```txt
+# create a script get_iccid.script with
+select EF.ICCID
+read_binary_decoded | jq -r '.iccid' > iccid
+quit
+```
+
+```sh
+./pySim-shell.py -p0 --script get_iccid.script
+iccid=$(cat iccid)
+echo $iccid
+```
+
+```sh
+grep $iccid simcards.csv
+```
+
+For me it's
+
+| NOM    | Valeur                           |
+| ------ | -------------------------------- |
+| name   | Subscriber 54942                 |
+| iccid  | $iccid                           |
+| imsi   | $imsi                            |
+| extern |                                  |
+| ki     | $key                             |
+| opc    | $opc                             |
+| adm1   | $adm                             |
+
+```sh
+EDITOR=nano ./pySim-shell.py -p0
+
+# in the sim shell
+verify_adm $adm
+select ADF.USIM/EF.IMSI
+
+# check the current value
+read_binary_decoded
+
+# change the IMSI to the correct value
+edit_binary_decoded
+
+# check the change
+read_binary_decoded
+```
+
+:::warning
+
+  Il faut bien mettre le IMSI et pas le ICCID (car on aurait, par exemple, mal recopié le csv)  car sinon cela rendrait la lecture et l édition du IMSI impossible
+  
+  Sauf si on ajoute ce bout de code [https://github.com/osmocom/pysim/pull/18](https://github.com/osmocom/pysim/pull/18) (patch envoyé par mail)
+  
+  Tout cela est hypothétique bien sur ^^
+
+:::
+
+On peut également faire plus simple et utiliser la commande pySim-prog.py
+
+```sh
+./pySim-prog.py -p0 \
+  -s $iccid \
+  -k $key \
+  -i $imsi \
+  -o $opc \
+  -a $adm
+```
+
+> si k ou o ne pas pas mis, il sont aléatoire
+>
+> -k KI, --ki=KI        Ki (default is to randomize)
+>
+> -o OPC, --opc=OPC     OPC (default is to randomize)
+
+![](./imgs/upload_d29faee72e3777cae475f834dba8ea09.png)
+
+## Test authentification
+
+- [https://osmocom.org/projects/pysim/wiki/Manually_Testing_USIM_Authentication](https://osmocom.org/projects/pysim/wiki/Manually_Testing_USIM_Authentication)
+
+On va avoir besoin de `osmo-auc-gen` (GSM/GPRS/3G authentication testing tool)
+
+```shell
+sudo apt install libosmocore-utils
+```
+
+```shell
+# step 1 create a random number
+random_num=$(dd if=/dev/random bs=16 count=1 2>/dev/null | xxd -p -l 100)
+
+# step 2 Generating the actual quintuple
+osmo-auc-gen --3g --algorithm MILENAGE \
+  --key $key \
+  --opc $opc \
+  --rand $random_num
+```
+
+![](./imgs/upload_e06cf318f5205faea5457e94b5862be8.png)
+
+```txt
+# step 3 Performing authentication with the card
+# ./pySim-shell.py -p0
+select ADF.USIM
+authenticate $rand $autn
+```
+
+![](./imgs/upload_75e624a96d51f156e23bd32dc25cd0f6.png)
+
+Si on le refait, cela fail et nous donne un numéro `auts`
+
+AUTS (Authentication Synchronization token) which contains an obfuscated value of the correct SQN and a hash MAC-S
+
+![](./imgs/upload_8c2d1a8eb1360196f2f44ada69e9d17e.png)
+
+
+On doit donc regénérer notre `AUTS` avec le `AUTS`
+
+```sh
+osmo-auc-gen --3g --algorithm MILENAGE \
+  --key $key \
+  --opc $opc \
+  --rand $random_num \
+  --auts $auts
+```
+
+![](./imgs/upload_abdb81836db306c44e0c46ae3adfdba6.png)
+
+On obtient un nouveau `AUTN` avec lequel on peut se re-authentifier
+
+```txt
+# step 3 Performing authentication with the card
+# ./pySim-shell.py -p0
+select ADF.USIM
+authenticate $rand $new_autn
+```
+
+![](./imgs/upload_255837300f413a79d29290bbf7634ca1.png)
+
+Si on écrit mal les chiffres, on a une erreur qui nous explique que la MAC est incorrect
+
+![](./imgs/upload_afcd7a621e1d81031aa4b486dbb02dbe.png)

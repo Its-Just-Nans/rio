@@ -1,0 +1,175 @@
+# TD4
+
+## Questions diverses sur NR
+
+Question 6 Répondez succinctement aux questions suivantes
+
+<details>
+<summary>1. Quels sont les trois grandes classes de cas d'usage de la 5G ?</summary>
+
+- eMBB : evolved Mobile Broadband
+- URLLC : Ultra Reliable Low Latency
+- Communications, mMTC : Massive Machine Type Communications
+
+</details>
+
+<details>
+<summary>2. Quel duplexage utilise-t-on pour le MIMO massif ? Pourquoi ?</summary>
+
+TDD pour pouvoir estimer plus facilement le canal
+
+</details>
+
+
+<details>
+<summary>3. Qu'appelle-t-on les "ondes millimétriques" en 5G ?</summary>
+
+Les fréquences porteuses entre 22 et 52 GHz.
+
+</details>
+
+
+<details>
+<summary>4. Comment peut-on contrer les pertes de propagation importantes en ondes millimétriques ?</summary>
+
+En augmentant le nombre d'antennes et en effectuant de la formation de faisceaux (beamforming).
+
+</details>
+
+
+<details>
+<summary>5. Quel est le rayon typique d'une cellule utilisant des ondes millimétriques ?</summary>
+
+200m
+
+</details>
+
+<details>
+<summary>6. Quelle est la largeur de bande maximale en 5G (phase 1) ?</summary>
+
+400 MHz
+
+</details>
+
+
+<details>
+<summary>7. Quel mécanisme doit-être mis en oeuvre pour déployer la 5G dans une bande non licenciée ?</summary>
+
+Listen-Before-Talk.
+
+</details>
+
+<details>
+<summary>8. Dans quels scénarios utilise-t-on des espacements entre sous-porteuses plus importantes ? Pourquoi ?</summary>
+
+- URLLC car on veut des symbole de courte durée
+- eMBB car on utilise de larges bande et on veut une taille de FFT raisonnable
+- mmW car on utilise de larges bandes et que l'interférence entre sous-porteuses augmente avec la fréquence porteuse.
+
+</details>
+
+<details>
+<summary>9. Dans quels scénarios utilise-t-on des espacements entre sous-porteuses plus faibles ? Pourquoi ?</summary>
+
+mMTC car on veut une meilleure couverture, fréquences en dessous de 6 GHz car les bandes sont plus petites et les cellules plus grandes (plus d'interférence entre symboles, donc un préfixe cyclique plus grand).
+
+</details>
+
+
+<details>
+<summary>10. Quels sont les mécanismes mis en oeuvre pour réduire la latence en 5G ?</summary>
+
+TDD dynamique, pas de relations temporelles fixes (par exemple la place du PDCCH n'est pas fixe), ACK dans le même slot que la transmission de données, préemption des ressources par le trafic critique.
+
+</details>
+
+<details>
+<summary>11. Quels types de fonctions sont assurées par le Mobile Edge Computing ?</summary>
+
+Traitement du signal (par ex. MIMO), applications avec calculs intensifs ou nécessitant beaucoup de mémoire, éventuellement mise en cache de contenus populaires.
+
+</details>
+
+<details>
+<summary>12. Quels sont les principales de bandes de fréquence de déploiement de la 5G en France ?</summary>
+
+700MHz, 3.5GHz, plus tard 26GHz.
+
+</details>
+
+<details>
+<summary>13. Quelles sont les modulations utilisées en 5G ?</summary>
+
+- π/2-BPSK
+- QPSK
+- 16-QAM
+- 64-QAM
+- 256-QAM.
+
+</details>
+
+<details>
+<summary>14. Quels sont les avantages attendus du codage LDPC par rapport aux Turbo Codes ?</summary>
+
+Meilleures performances à taux de codage élevé, moindre complexité d'encodage et de décodage, décodage parallélisable et donc avec un délai plus faible.
+
+</details>
+
+<details>
+<summary>15. Décrivez la structure de trame en 5G. En particulier, donnez le nombre de symboles OFDM par slot et le nombre de slots par sous-trame en fonction de l'espacement entre sous-porteuses.</summary>
+
+- 1 trame (10ms) = 10 sous-trames (1ms).
+- 1 sous-trame = 1 slot (15kHz), 2 slots (30kHz), 4 slots (60kHz), 8 slots (120kHz), 16 slots (240 kHz).
+- 1 slot = 14 symboles OFDM.
+
+</details>
+
+<details>
+<summary>16. Qu'est-ce qu'un RB en 5G ?</summary>
+
+12 sous-porteuses.
+
+</details>
+
+<details>
+<summary>17. Pourquoi les signaux de synchronisation SSB ne sont-ils pas placés au centre de la bande du système comme en LTE ?</summary>
+
+On veut pouvoir "confiner" un terminal dans une sous-partie de la bande.
+
+</details>
+
+<details>
+<summary>18. Comment l'UE trouve-t-il les signaux de synchronisation ?</summary>
+
+Il parcourt un ensemble de fréquences possibles espacées de 1.44MHz (synchronization raster).
+
+</details>
+
+<details>
+<summary>19. Pourquoi faut-il répéter les SSB jusqu'à 64 fois par demi-trame ?</summary>
+
+Chaque faisceau diffuse son propre SSB.
+
+</details>
+
+
+<details>
+<summary>20. Comment l'UE identifie-t-il le faisceau de la station de base avec lequel il devra communiquer pour l'accès aléatoire ?</summary>
+
+Il lit l'index du faisceau dans le MIB.
+
+</details>
+
+<details>
+<summary>21. Comment l'UE identifie-t-il les occasions temps-fréquence pour l'accès aléatoire ?</summary>
+
+Un SIB lui indique les occasions à utiliser en fonction de l'index du faisceau détecté au moment de la synchronisation.
+
+</details>
+
+<details>
+<summary>22. Quels sont les principaux intérêts des "parties de bande" (bandwidth part) ?</summary>
+
+Permettre à un terminal de n'utiliser qu'une partie de la bande soit parce que son trafic est faible, soit pour économiser son énergie, soit parce qu'il n'est pas capable de décoder toute la bande.
+</details>
+
