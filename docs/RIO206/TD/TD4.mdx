@@ -1,6 +1,6 @@
 # TD4
 
-## Questions diverses sur NR
+## Exercice 4 : Questions diverses sur NR
 
 Question 6 Répondez succinctement aux questions suivantes
 
@@ -47,7 +47,8 @@ En augmentant le nombre d'antennes et en effectuant de la formation de faisceaux
 <details>
 <summary>6. Quelle est la largeur de bande maximale en 5G (phase 1) ?</summary>
 
-400 MHz
+- 400 MHz en mmW
+- 100 MHZ dans la bande 3.5-6 GHZ
 
 </details>
 
@@ -55,14 +56,15 @@ En augmentant le nombre d'antennes et en effectuant de la formation de faisceaux
 <details>
 <summary>7. Quel mécanisme doit-être mis en oeuvre pour déployer la 5G dans une bande non licenciée ?</summary>
 
-Listen-Before-Talk.
+- Channel Clear Assessment
+- Listen-Before-Talk
 
 </details>
 
 <details>
 <summary>8. Dans quels scénarios utilise-t-on des espacements entre sous-porteuses plus importantes ? Pourquoi ?</summary>
 
-- URLLC car on veut des symbole de courte durée
+- URLLC car on veut des symbole de courte durée (latence)
 - eMBB car on utilise de larges bande et on veut une taille de FFT raisonnable
 - mmW car on utilise de larges bandes et que l'interférence entre sous-porteuses augmente avec la fréquence porteuse.
 
@@ -71,7 +73,8 @@ Listen-Before-Talk.
 <details>
 <summary>9. Dans quels scénarios utilise-t-on des espacements entre sous-porteuses plus faibles ? Pourquoi ?</summary>
 
-mMTC car on veut une meilleure couverture, fréquences en dessous de 6 GHz car les bandes sont plus petites et les cellules plus grandes (plus d'interférence entre symboles, donc un préfixe cyclique plus grand).
+- mMTC small SCS,car on veut une meilleure couverture, fréquences en dessous de 6 GHz car les bandes sont plus petites et les cellules plus grandes (plus d'interférence entre symboles, donc un préfixe cyclique plus grand).
+- fréquences basses (sous 6GHz): samll SCS, bonne couverture (donc étalement du canal)
 
 </details>
 
@@ -79,28 +82,42 @@ mMTC car on veut une meilleure couverture, fréquences en dessous de 6 GHz car l
 <details>
 <summary>10. Quels sont les mécanismes mis en oeuvre pour réduire la latence en 5G ?</summary>
 
-TDD dynamique, pas de relations temporelles fixes (par exemple la place du PDCCH n'est pas fixe), ACK dans le même slot que la transmission de données, préemption des ressources par le trafic critique.
+- TDD dynamique
+- pas de relations temporelles fixes (par exemple la place du PDCCH n'est pas fixe)
+- TTI réduit
+- ACK dans le même slot que la transmission de données
+- préemption des ressources par le trafic critique.
+- self contained slot
+- D2D
 
 </details>
 
 <details>
 <summary>11. Quels types de fonctions sont assurées par le Mobile Edge Computing ?</summary>
 
-Traitement du signal (par ex. MIMO), applications avec calculs intensifs ou nécessitant beaucoup de mémoire, éventuellement mise en cache de contenus populaires.
+- Traitement du signal (par ex. MIMO, network MIMO)
+- Applications avec calculs intensifs ou nécessitant beaucoup de mémoire
+- Éventuellement mise en cache de contenus populaires
 
 </details>
 
 <details>
 <summary>12. Quels sont les principales de bandes de fréquence de déploiement de la 5G en France ?</summary>
 
-700MHz, 3.5GHz, plus tard 26GHz.
+- 700 MHz
+- 3.5 GHz
+- refarming:
+  - 1800 MHZ
+  - 2100 MHZ
+  - 2600 MHZ
+- plus tard 26 GHz
 
 </details>
 
 <details>
 <summary>13. Quelles sont les modulations utilisées en 5G ?</summary>
 
-- π/2-BPSK
+- $\frac{π}{2}$-BPSK
 - QPSK
 - 16-QAM
 - 64-QAM
@@ -127,7 +144,7 @@ Meilleures performances à taux de codage élevé, moindre complexité d'encodag
 <details>
 <summary>16. Qu'est-ce qu'un RB en 5G ?</summary>
 
-12 sous-porteuses.
+1RB = 12 sous-porteuses
 
 </details>
 

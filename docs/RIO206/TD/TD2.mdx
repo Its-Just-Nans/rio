@@ -1,0 +1,85 @@
+# TD2
+
+## Exercice 2 : Calculs de débits crêtes en LTE
+
+On désire calculer le débit crête en LTE sur la voie descendante. On fait
+toutes les hypothèses nécessaires pour maximiser le débit utilisateur. Précisez
+vos hypothèses. On considère la durée d'une trame radio (10ms) pour le dénom-
+brement des ressources. Notez que les PSS/SSS occupent 62 sous-porteuses en
+fréquence et le PBCH occupe 72 sous-porteuses.
+
+
+<details>
+<summary>1. Quel est le nombre de RE par trame radio ?</summary>
+
+7 symboles OFDM
+
+- 7(symboles) x 20(slots)= 140 symboles par trame
+- 140 x 100(RB) x 12(sous-porteuses/RB) = 168000 RE.
+
+On a supposé une bande de 20MHz et donc 100 RB.
+
+</details>
+
+
+<details>
+<summary>2. Combien de RE sont utilisés par les canaux de contrôle PDCCH, PC-FICH et PHICH ?</summary>
+
+1 symbole OFDM x 100 RB x 12 sous-porteuses x 10 sous- trames = 12000 RE.
+
+On suppose un seul symbole OFDM pour les PDCCH.
+
+</details>
+
+
+<details>
+<summary>3. Combien de RE sont utilisés par les canaux SSS, PSS et PBCH ?</summary>
+
+- 62(sp) x 4(symboles) = 248 RE pour SSS et PSS
+- 72(sp) x 4(symboles) = 288 RE pour le PBCH
+
+Soit 536 RE
+
+</details>
+
+
+<details>
+<summary>4. Donnez une estimation de la surcharge protocolaire due à la transmission des RS pour une transmission avec 4 antennes (se reporter au cours).</summary>
+
+D'après le cours (voir transparent sur les REs dans le cours - en considérant 4 antennes) :
+
+$$
+\frac{24}{168} = 14.28 \%
+$$
+
+</details>
+
+
+<details>
+<summary>5. En déduire le débit binaire (incluant les bits de redondance du code correcteur d'erreur).</summary>
+
+64-QAM = 6 bits par symbole QAM, 4 flux MIMO simultanés.
+
+$$
+D= \frac{(168000 - 12000 - 536)(1 - 0.1428) * 6 * 4}{10 * 10^-3} = 320 Mbps
+$$
+
+</details>
+
+
+<details>
+<summary>6. On suppose que le taux de codage le plus élevé est de $\frac{3}{4}$. En déduire le débit utile au niveau PHY</summary>
+
+$$
+= 320 * \frac{3}{4} = 240 Mbps
+$$
+
+</details>
+
+<details>
+<summary>7. Portez une analyse critique des débits obtenus précédemment.</summary>
+
+
+On a supposé : un seul utilisateur dans la cellule, dans les meilleures conditions radio, sans interférence, avec la catégorie de terminal maximale.
+
+</details>
