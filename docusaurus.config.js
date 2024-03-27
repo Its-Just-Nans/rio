@@ -10,6 +10,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
+    plugins: [require.resolve("docusaurus-lunr-search")],
     title: "RIO website",
     tagline: "Unofficial RIO website",
     favicon: "img/rio_rect.png",
