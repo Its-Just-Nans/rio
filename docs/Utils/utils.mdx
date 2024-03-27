@@ -48,7 +48,8 @@ export const MNC = ()=>{
 }
 
 export const TAC = ()=>{
-    return (<div class="accro tac">
+    return (
+        <div class="accro tac">
             <p class="name">TAC</p>
             <p class="def">(Type Allocation Code) - 8 digits</p>
             <div class="details">
@@ -57,6 +58,26 @@ export const TAC = ()=>{
             FAC = Final Assembly Code
             </div>
         </div>)
+}
+
+export const MMEC = ()=>{
+    return (
+        <div class="accro mmec">
+            <p class="name">MMEC</p>
+            <p class="def">(MME Code) - 8 bits</p>
+            <div class="details"></div>
+        </div>
+    )
+}
+
+export const MTMSI = ()=>{
+    return (
+        <div class="accro mtmsi">
+            <p class="name">M-TMSI</p>
+            <p class="def">(MME Temporary Mobile Subscriber Identity) - 32 bit</p>
+            <div class="details"></div>
+        </div>
+    )
 }
 
 <Balise>
@@ -75,14 +96,55 @@ export const TAC = ()=>{
             <p class="def">(Globally Unique Mobility Management Entity Identifier)</p>
             <div class="details"></div>
         </div>
-        <div class="accro">
-            <p class="name">M-TMSI</p>
-            <p class="def">(MME TMSI)</p>
-            <div class="details"></div>
+        <MTMSI />
+    </div>
+    <div class="named">
+        <div style={{flex: "0.5", display: "flex"}}>
+            <Plmn />
+            <div class="accro">
+                <p class="name">MME Identifier</p>
+                <p class="def"></p>
+                <div class="details"></div>
+            </div>
+        </div>
+        <div class="accro" style={{flex: "0.5"}}>
+        </div>
+    </div>
+    <div class="named">
+        <div style={{flex: "0.5", display: "flex"}}>
+            <MCC />
+            <MNC />
+            <div class="accro">
+                <p class="name">MMEGI</p>
+                <p class="def">(MME Group ID) - 16 bits</p>
+                <div class="details"></div>
+            </div>
+            <MMEC />
+        </div>
+        <div class="accro" style={{flex: "0.5"}}>
         </div>
     </div>
 </Balise>
 
+<Spacing />
+
+<Balise>
+    <div class="named">
+        <div class="accro">
+            <p class="name">S-TMSI</p>
+            <p class="def">(SAE-Temporary Mobile Subscriber Identity)</p>
+            <div class="details">
+            Used for paging
+
+            shortened form of the GUTI
+            </div>
+        </div>
+    </div>
+    <div class="named">
+        <MMEC />
+        <MTMSI />
+    </div>
+</Balise>
 
 <Spacing />
 
@@ -169,10 +231,7 @@ export const TAC = ()=>{
             <MNC />
         </div>
         <div class="accro" style={{flex: "0.5"}}>
-            <p class="name">ECI</p>
-            <p class="def">(E-UTRAN Cell Identifier)</p>
-            <div class="details">
-            </div>
+            
         </div>
     </div>
 </Balise>
