@@ -173,20 +173,26 @@ Chaque faisceau diffuse son propre SSB.
 <details>
 <summary>20. Comment l'UE identifie-t-il le faisceau de la station de base avec lequel il devra communiquer pour l'accès aléatoire ?</summary>
 
-Il lit l'index du faisceau dans le MIB.
+Il effectue les mesures pour chacun de ses propres faisceaux, choisit le SSB qui fournit la plus grande puissance, il note l'index du SSB faisceau dans le MIB.
 
 </details>
 
 <details>
 <summary>21. Comment l'UE identifie-t-il les occasions temps-fréquence pour l'accès aléatoire ?</summary>
 
-Un SIB lui indique les occasions à utiliser en fonction de l'index du faisceau détecté au moment de la synchronisation.
+Un SIB lui indique les occasions à utiliser en fonction de l'index SIB du faisceau détecté au moment de la synchronisation.
 
 </details>
 
 <details>
 <summary>22. Quels sont les principaux intérêts des "parties de bande" (bandwidth part) ?</summary>
 
-Permettre à un terminal de n'utiliser qu'une partie de la bande soit parce que son trafic est faible, soit pour économiser son énergie, soit parce qu'il n'est pas capable de décoder toute la bande.
+Permettre à un terminal de n'utiliser qu'une partie de la bande :
+- parce que son trafic est faible (IoT)
+- pour économiser son énergie
+- services différenciés (BWP1: SCS1, BWP2: SCS2)
+- parce qu'il n'est pas capable de décoder toute la bande
+- rétro compabilité et "forward compatibility"
+
 </details>
 
