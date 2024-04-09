@@ -4,18 +4,18 @@ title: "TP4 - Partie 1"
 
 ## TP4 - Complete network with open5Gs and srsRan_4G
 
-Le but de se TP est de mettre en place un réseau 4G complet, en utilisant open5Gs et srsRan_4G, ce qui permet de démontrer la bonne configuration de l'ensemble des éléments du réseau. Et évidemment cela se fera en utilisant la virtualisation._createMdxContent
+Le but de ce TP est de mettre en place un réseau 4G complet, en utilisant open5Gs et srsRan_4G, ce qui permet de démontrer la bonne configuration de l'ensemble des éléments du réseau. Et évidemment cela se fera en utilisant la virtualisation._createMdxContent
 
 Le but final du TP est d'avoir une virtualisation légère (en utilisant par exemple des containers).
 
-Ce TP contient donc plusieurs étapes possibles : de la virtualisation sur une seule VM, à la virtualisation sur plusieurs VMs ou des problèmes de routage se poseront, puis finalement à la virtualisation sur des containers jusqu'a le déploiement dans un cloud de celui-ci.
+Ce TP contient donc plusieurs étapes possibles : de la virtualisation sur une seule VM, à la virtualisation sur plusieurs VMs ou des problèmes de routage se poseront, puis finalement à la virtualisation sur des containers jusqu'au le déploiement dans un cloud de celui-ci.
 
 ![](./imgs/upload_b22abd7573604dcc5256bc22a6aab069.jpeg)
 
-Comme au dernier TP nous avions un réseau 4G complet sur une VM et presque fonctionnel entre deux machines, nous avons décidé de continuer sur cette lancée et de continuer à travailler sur deux VM différentes. Cela nous permet d'utiliser le matériel physique mit a disposition
+Comme au dernier TP nous avions un réseau 4G complet sur une VM et presque fonctionnel entre deux machines, nous avons décidé de continuer sur cette lancée et de continuer à travailler sur deux VM différentes. Cela nous permet d'utiliser le matériel physique mis a disposition
 
 
-Nous devons donc sur une VM (qui sera le core + eNB) installer [open5Gs](https://open5gs.org/open5gs/docs/). Pour cela, le [quickstart](https://open5gs.org/open5gs/docs/guide/01-quickstart/) est assez pratique. On regarde aussi le guide [your first lte](https://open5gs.org/open5gs/docs/tutorial/01-your-first-lte/) qui aussi intéressant.
+Nous devons donc sur une VM (qui sera le core + eNB) installer [open5Gs](https://open5gs.org/open5gs/docs/). Pour cela, le [quickstart](https://open5gs.org/open5gs/docs/guide/01-quickstart/) est assez pratique. On regarde aussi le guide [your first lte](https://open5gs.org/open5gs/docs/tutorial/01-your-first-lte/) qui est aussi intéressant.
 
 
 
@@ -28,7 +28,7 @@ Comme nous installons le package via un ppa (via apt) il n'y a pas de difficult�
 
 L'installation de la webui est par contre un peu capricieuse car le tutoriel n'est pas optimal a mon gout.
 
-Il nous fait installer une version de nodejs possiblement trop vielle et oubli de préciser qu'il faut installer npm.
+Il nous fait installer une version de nodejs possiblement trop vielle et oublie de préciser qu'il faut installer npm.
 
 :::info
 
@@ -36,7 +36,7 @@ Une petite PR pour changer la doc de open5GS https://github.com/open5gs/open5gs/
 
 :::
 
-Nous décidons donc de ne pas suivre ces étape et de faire l'installation de NodeJS via [nvm](https://github.com/nvm-sh/nvm)
+Nous décidons donc de ne pas suivre ces étapes et de faire l'installation de NodeJS via [nvm](https://github.com/nvm-sh/nvm)
 
 Pour ne pas s'embeter avec les PATH pour trouver nodeJS (si nodeJS est installé via nvm, il n'est pas dans le PATH global), on fait donc un lien symbolique
 
@@ -94,7 +94,7 @@ On rentre donc les informations dans open5Gs
 
 Pour la suite du TP nous allons devoir faire deux choses :
 
-- changer la connection entre le core et l'eNB pour utiliser l'IP du MME core
+- changer la connexion entre le core et l'eNB pour utiliser l'IP du MME core
 - comme nous utilisons notre propre carte SIM, nous devons changer les informations du MCC et MNC (le début de l'IMSI) pour que cela corresponde à notre carte SIM
 
 Exemple pour modifier le fichier de configuration de l'eNB
@@ -140,7 +140,7 @@ tail -f /var/log/open5gs/mme.log
 ```
 
 
-Nous arrivons donc a la fin du TP, avec un réseaux 4G complet qui fonctionne, a noter que comme dans le précédent TP, il y a toujours un problème avec la vitesse de l'interface radio.
-Cepedant en utilisant zmq (dans ce cas, pour que ça soit simple, il faut que les deux VM soit sur le même PC), cela fonctionne bien.
+Nous arrivons donc à la fin du TP, avec un réseaux 4G complet qui fonctionne, à noter que comme dans le précédent TP, il y a toujours un problème avec la vitesse de l'interface radio.
+Cependant en utilisant `zmq` (dans ce cas, pour que ça soit simple, il faut que les deux VM soient sur le même PC), cela fonctionne bien.
 
 Toutefois, nous avons fait ici seulement une des premières étapes du TP. Dans la deuxième partie, nous verrons une autre manière de faire ce TP, en utilisant des containers.
