@@ -13,7 +13,7 @@ const config = {
     plugins: [require.resolve("docusaurus-lunr-search")],
     title: "RIO website",
     tagline: "Unofficial RIO website",
-    favicon: "img/rio_rect.png",
+    favicon: "favicon.ico",
     markdown: {
         mermaid: true,
     },
